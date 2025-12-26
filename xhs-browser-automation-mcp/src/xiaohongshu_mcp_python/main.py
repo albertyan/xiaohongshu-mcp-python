@@ -18,6 +18,7 @@ from .config import settings
 from .utils.logger_config import setup_logger
 from .server.mcp_tools import mcp  # 导入 MCP 实例和所有工具函数（通过导入自动注册）
 
+
 # 全局配置（从 settings 读取）
 GLOBAL_HEADLESS = settings.BROWSER_HEADLESS
 GLOBAL_USER = settings.GLOBAL_USER

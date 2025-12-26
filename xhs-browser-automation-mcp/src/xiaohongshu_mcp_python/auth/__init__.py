@@ -7,7 +7,7 @@ from .login_manager import LoginManager
 from .login_session_manager import LoginSessionManager
 from .xiaohongshu_login import XiaohongshuLogin
 from .login_types import LoginStatus, LoginResult, QRCodeInfo, LoginConfig
-
+from .xiaohongshu_login import get_user_login as login
 __all__ = [
     "LoginManager",
     "LoginSessionManager",
@@ -16,5 +16,6 @@ __all__ = [
     "LoginResult",
     "QRCodeInfo",
     "LoginConfig",
+    "login",
 ]
 

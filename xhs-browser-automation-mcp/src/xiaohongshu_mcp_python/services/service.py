@@ -34,6 +34,7 @@ from ..actions.publish import PublishAction
 from ..actions.search import SearchAction
 from ..actions.feeds import FeedsAction
 from ..actions.user import UserAction
+from ..actions.search_model import FilterOption
 # from ..actions.comment import CommentAction
 # from ..actions.like import LikeAction
 # from ..actions.favorite import FavoriteAction
@@ -284,6 +285,8 @@ class XiaohongshuService:
         self,
         keyword: str,
         page: int = 1,
+        max_items: int = 50,
+        filters: Optional[FilterOption] = None,
         username: Optional[str] = None
     ) -> SearchResult:
         """
@@ -292,6 +295,7 @@ class XiaohongshuService:
         Args:
             keyword: 搜索关键词
             page: 页码
+            max_items: 最大获取数量
             username: 用户名
             
         Returns:
@@ -307,7 +311,7 @@ class XiaohongshuService:
                 )
             
             search_action = SearchAction(browser_page)
-            return await search_action.search(keyword, page)
+            return await search_action.search(keyword, page, max_items, filters)
             
         except Exception as e:
             logger.error(f"搜索内容失败: {e}")

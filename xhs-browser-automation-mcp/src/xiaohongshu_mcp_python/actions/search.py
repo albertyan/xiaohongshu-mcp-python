@@ -12,7 +12,8 @@ from loguru import logger
 from playwright.async_api import Page, TimeoutError as PlaywrightTimeoutError
 
 from ..config import Feed, SearchResult
-
+from ..utils.anti_bot import AntiBotStrategy
+from .search_model import FilterOption, InternalFilterOption, convert_to_internal_filters, validate_internal_filter_option
 
 class SearchAction:
     """搜索操作类"""
@@ -26,18 +27,47 @@ class SearchAction:
         """
         self.page = page
         
-    async def search(self, keyword: str, page_num: int = 1) -> SearchResult:
+    async def search(self, keyword: str, page_num: int = 1, max_items: int = 50, filters: Optional[FilterOption] = None) -> SearchResult:
         """
-        搜索内容
+        搜索内容（支持滚动加载多页）
         
         Args:
             keyword: 搜索关键词
-            page_num: 页码
+            page_num: 滚动页数（每页对应一次滚动加载）
+            max_items: 最大获取数量限制
+            filters: 搜索筛选选项
             
         Returns:
             搜索结果
         """
         try:
+            # 存储所有收集到的数据
+            all_feeds: List[Feed] = []
+            seen_ids = set()
+            
+            # API 响应拦截处理
+            async def handle_response(response):
+                try:
+                    # 监听搜索 API 响应
+                    if "/api/sns/web/v1/search/notes" in response.url and response.status == 200:
+                        logger.info(f"捕获到搜索 API 响应: {response.url}")
+                        try:
+                            data = await response.json()
+                            if data and "data" in data and "items" in data["data"]:
+                                items = data["data"]["items"]
+                                logger.info(f"API 返回 {len(items)} 条数据")
+                                for item in items:
+                                    # 尝试解析每一项
+                                    feed = self._convert_item_to_feed(item)
+                                    if feed and feed.id not in seen_ids:
+                                        seen_ids.add(feed.id)
+                                        all_feeds.append(feed)
+                                        logger.debug(f"通过 API 收集到笔记: {feed.id}")
+                        except Exception as e:
+                            logger.warning(f"解析 API 响应失败: {e}")
+                except Exception as e:
+                    pass  # 忽略处理过程中的错误，避免影响主流程
+
             # 构建搜索URL
             search_url = self._make_search_url(keyword)
             logger.info(f"搜索URL: {search_url}")
@@ -47,56 +77,142 @@ class SearchAction:
             
             # 等待页面稳定
             await self.page.wait_for_load_state("networkidle")
-            
-            # 等待 __INITIAL_STATE__ 可用
-            await self.page.wait_for_function("() => window.__INITIAL_STATE__ !== undefined")
-            
-            # 获取 __INITIAL_STATE__ 数据
-            initial_state_js = """
-            () => {
-                if (window.__INITIAL_STATE__) {
-                    // 安全地序列化，避免循环引用
-                    try {
-                        return JSON.stringify(window.__INITIAL_STATE__, (key, value) => {
-                            // 跳过可能导致循环引用的属性
-                            if (key === 'dep' || key === 'computed' || typeof value === 'function') {
-                                return undefined;
-                            }
-                            return value;
-                        });
-                    } catch (e) {
-                        // 如果还是有问题，只提取我们需要的部分
-                        const state = window.__INITIAL_STATE__;
-                        if (state && state.Main && state.Main.feedData) {
-                            return JSON.stringify({
-                                Main: {
-                                    feedData: state.Main.feedData
+            ## 处理筛选选项
+            if filters:
+                try:
+                    internal_filters: List[InternalFilterOption] = self._apply_filters(filters)
+                    await self.page.locator("div.filter").hover()
+                    await self.page.wait_for_function("() => document.querySelector('div.filter-panel') !== null", timeout=5000)
+                    for filter_option in internal_filters:
+                        selector = "div.filter-panel div.filters:nth-child({}) div.tags:nth-child({})".format(
+                            filter_option.filters_index, 
+                            filter_option.tags_index
+                        )
+                        logger.info(f"点击筛选选项: {selector}")
+                        await self.page.locator(selector).click()    
+                        await AntiBotStrategy.add_random_delay(seed=filter_option.filters_index)
+                except ValueError as e:
+                    logger.error(f"筛选选项验证失败: {e}")
+                    return SearchResult(
+                        success=False,
+                        message=str(e),
+                        feeds=[]
+                    )
+                
+             # 注册响应监听
+            self.page.on("response", handle_response)
+
+            # 等待页面稳定
+            await self.page.wait_for_load_state("networkidle")
+            # 1. 首先尝试获取首屏数据 (__INITIAL_STATE__)
+            try:
+                # 等待 __INITIAL_STATE__ 可用
+                await self.page.wait_for_function("() => window.__INITIAL_STATE__ !== undefined", timeout=5000)
+                
+                # 获取 __INITIAL_STATE__ 数据
+                initial_state_js = """
+                () => {
+                    if (window.__INITIAL_STATE__) {
+                        try {
+                            return JSON.stringify(window.__INITIAL_STATE__, (key, value) => {
+                                if (key === 'dep' || key === 'computed' || typeof value === 'function') {
+                                    return undefined;
                                 }
+                                return value;
                             });
+                        } catch (e) {
+                            const state = window.__INITIAL_STATE__;
+                            if (state && state.Main && state.Main.feedData) {
+                                return JSON.stringify({
+                                    Main: {
+                                        feedData: state.Main.feedData
+                                    },
+                                    search: state.search
+                                });
+                            }
+                            return "{}";
                         }
-                        return "{}";
                     }
+                    return "";
                 }
-                return "";
-            }
-            """
+                """
+                
+                result = await self.page.evaluate(initial_state_js)
+                
+                if result:
+                    initial_result = await self._parse_search_results_from_state(result)
+                    for item in initial_result.items:
+                        if item.id not in seen_ids:
+                            seen_ids.add(item.id)
+                            all_feeds.append(item)
+                    logger.info(f"首屏加载完成，当前共收集 {len(all_feeds)} 条数据")
+            except Exception as e:
+                logger.warning(f"获取首屏 State 数据失败 (非致命): {e}")
+
+            # 2. 滚动加载更多数据
+            if page_num > 1:
+                logger.info(f"开始执行滚动加载，目标页数: {page_num}")
+                
+                for i in range(page_num - 1):
+                    # 如果已达到数量限制，停止滚动
+                    if len(all_feeds) >= max_items:
+                        logger.info(f"已达到最大数量限制 {max_items}，停止滚动")
+                        break
+                        
+                    logger.info(f"正在执行第 {i + 1}/{page_num - 1} 次滚动...")
+                    
+                    # 滚动到底部
+                    await self.page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                    
+                    # # 等待加载
+                    # try:
+                    #     # 等待网络空闲或固定时间，给 API 请求留出时间
+                    #     # 随机等待 2-4 秒模拟人类行为
+                    #     import random
+                    #     wait_time = random.uniform(2, 4)
+                    #     await asyncio.sleep(wait_time)
+                        
+                    #     # 检查是否有加载指示器
+                    #     # await self.page.wait_for_selector(".loading", state="hidden", timeout=2000)
+                    # except Exception:
+                    #     pass
+                    # 添加随机延迟，模拟人类行为
+                    await AntiBotStrategy.add_random_delay(seed=keyword)
             
-            result = await self.page.evaluate(initial_state_js)
+                    # 使用统一的反爬虫导航策略
+                    await AntiBotStrategy.simulate_human_navigation(self.page, search_url)
+
+                    # 等待页面稳定
+                    await self.page.wait_for_load_state("networkidle")
+
+                    logger.info(f"滚动完成，当前共收集 {len(all_feeds)} 条数据")
             
-            if not result:
-                logger.warning("未找到 __INITIAL_STATE__ 数据")
-                return SearchResult(items=[], has_more=False, total=0)
+            # 截断到最大数量
+            if len(all_feeds) > max_items:
+                all_feeds = all_feeds[:max_items]
             
+            logger.info(f"搜索完成，总计获取 {len(all_feeds)} 条数据")
             
-            # 解析搜索结果
-            return await self._parse_search_results_from_state(result)
+            return SearchResult(
+                items=all_feeds,
+                has_more=True, # 简化处理，假设总是有更多
+                total=len(all_feeds)
+            )
             
         except PlaywrightTimeoutError as e:
             logger.error(f"搜索超时: {e}")
-            return SearchResult(items=[], has_more=False, total=0)
+            return SearchResult(items=all_feeds if 'all_feeds' in locals() else [], has_more=False, total=0)
         except Exception as e:
             logger.error(f"搜索失败: {e}")
-            return SearchResult(items=[], has_more=False, total=0)
+            import traceback
+            logger.error(traceback.format_exc())
+            return SearchResult(items=all_feeds if 'all_feeds' in locals() else [], has_more=False, total=0)
+        finally:
+            # 移除监听器
+            try:
+                self.page.remove_listener("response", handle_response)
+            except Exception:
+                pass
     
     def _make_search_url(self, keyword: str) -> str:
         """
@@ -246,9 +362,9 @@ class SearchAction:
                 id=item.get("id", ""),
                 model_type=item.get("modelType", ""),
                 note_card=note_card,
-                track_id=item.get("trackId")
+                track_id=item.get("trackId"),
+                xsec_token=item.get("xsecToken"),
             )
-            
             return feed
             
         except Exception as e:
@@ -315,3 +431,20 @@ class SearchAction:
             
         except Exception as e:
             logger.error(f"保存搜索数据失败: {e}")
+        
+    def _apply_filters(self, filters: FilterOption):
+        """
+        应用筛选选项
+        
+        Args:
+            filters: 筛选选项列表
+        """
+        internal_filters: List[InternalFilterOption] = convert_to_internal_filters(filters)
+
+        for filter_option in internal_filters:
+           try:
+               validate_internal_filter_option(filter_option)
+           except ValueError as e:
+               logger.error(f"无效的筛选选项: {e}")
+               continue
+        return internal_filters

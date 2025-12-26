@@ -222,3 +222,12 @@ class XiaohongshuLogin:
         except Exception as e:
             logger.error(f"保存 cookies 失败: {e}")
             return False
+
+
+def get_user_login() -> XiaohongshuLogin:
+    """获取全局用户会话管理器实例"""
+    global _global_user_login
+    if _global_user_login is None:
+        _global_user_login = XiaohongshuLogin()
+    return _global_user_login
+

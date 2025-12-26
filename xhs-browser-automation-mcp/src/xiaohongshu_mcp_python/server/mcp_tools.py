@@ -3,6 +3,7 @@ MCP 工具函数模块
 包含所有 MCP 工具接口的实现
 """
 
+import json
 from typing import Optional, Union, List
 from loguru import logger
 from fastmcp import Context, FastMCP
@@ -13,6 +14,7 @@ from ..browser import BrowserManager
 from ..storage.cookie_storage import CookieStorage
 from ..managers.user_session_manager import get_user_session_manager
 from ..utils.auth_helpers import check_user_login_status
+from ..actions.search_model import SearchFeedsArgs, FilterOption, SortByType, NoteTypeType, PublishTimeType, SearchScopeType, LocationType
 
 
 # 创建 FastMCP 实例（需要在导入时创建，以便工具函数可以注册）
@@ -540,21 +542,31 @@ async def xiaohongshu_publish_video(
 @mcp.tool
 async def xiaohongshu_search_feeds(
     keyword: str,
+    page_num: int = 1,
+    max_items: int = 50,
+    filters: Optional[FilterOption] = None,
+    filterStr: Optional[str] = None,
     username: Optional[str] = None
 ) -> dict:
     """
-    搜索小红书内容
+    搜索小红书内容111
     
     Args:
         keyword: 搜索关键词
+        page_num: 滚动加载页数（默认为1，即只加载首屏）
+        max_items: 最大获取数量限制（默认为50）
+        filters: 搜索过滤选项
         username: 用户名（可选，如果不提供则使用全局用户）
         
     Returns:
         搜索结果
     """
     try:
+        if filterStr:
+            data = json.loads(filterStr)
+            filters = FilterOption(**data)
+
         current_user = username or settings.GLOBAL_USER
-        
         # 检查用户登录状态（基于本地 cookies）
         login_check = await check_user_login_status(current_user)
         if not login_check.get("valid", False):
@@ -576,12 +588,18 @@ async def xiaohongshu_search_feeds(
             service = XiaohongshuService(browser_manager)
             
             # 执行搜索
-            result = await service.search_content(keyword, username=current_user)
+            result = await service.search_content(
+                keyword, 
+                page=page_num,
+                max_items=max_items,
+                filters=filters,
+                username=current_user   
+            )
             
             return {
                 "success": True,
                 "result": result.dict() if hasattr(result, 'dict') else result.__dict__,
-                "message": f"搜索关键词 '{keyword}' 成功"
+                "message": f"搜索关键词 '{keyword}' 成功，共获取 {len(result.items)} 条结果"
             }
             
         finally:

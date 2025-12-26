@@ -13,6 +13,7 @@ from .main import main, cli_main
 from .server import app, mcp, AppServer
 from .services import XiaohongshuService
 from .managers.user_session_manager import get_user_session_manager
+from .auth.xiaohongshu_login import get_user_login as login
 
 # 为了向后兼容，将 MCP 工具函数导出
 # 注意：这些函数实际上在 server.mcp_tools 中定义
@@ -56,4 +57,5 @@ __all__ = [
     "xiaohongshu_list_feeds",
     "xiaohongshu_get_user_profile",
     "xiaohongshu_get_feed_detail",
+    "login",
 ]

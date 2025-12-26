@@ -132,10 +132,10 @@ def get_project_root() -> Path:
             if (parent / "pyproject.toml").exists():
                 # 关键验证：确保目录名是 xhs-browser-automation-mcp
                 # 这样可以防止返回父级目录（/root/project/ai_project/yx_运营/xhs_小红书运营/）
-                if parent.name == "xhs-browser-automation-mcp":
-                    return parent
+                # if parent.name == "xhs-browser-automation-mcp":
+                return parent
                 # 如果目录名不匹配，继续查找（不返回，确保只返回正确的目录）
-                continue
+                # continue
     
     # 如果上面的方法找不到，尝试从当前文件位置向上查找包含 pyproject.toml 的目录
     # 然后验证是否包含 src/xiaohongshu_mcp_python
@@ -144,10 +144,10 @@ def get_project_root() -> Path:
             # 检查是否包含 src/xiaohongshu_mcp_python 目录
             if (parent / required_src_dir).exists():
                 # 关键验证：确保目录名是 xhs-browser-automation-mcp
-                if parent.name == "xhs-browser-automation-mcp":
-                    return parent
+                # if parent.name == "xhs-browser-automation-mcp":
+                return parent
                 # 如果目录名不匹配，继续查找（不返回，确保只返回正确的目录）
-                continue
+                # continue
     
     # 如果都找不到，使用 fallback：当前文件所在目录向上4级
     # settings.py 在 src/xiaohongshu_mcp_python/config/ 下
@@ -157,8 +157,8 @@ def get_project_root() -> Path:
     # 验证 fallback_root 是否是有效的项目根目录
     if (fallback_root / required_src_dir).exists():
         # 关键验证：确保目录名是 xhs-browser-automation-mcp
-        if fallback_root.name == "xhs-browser-automation-mcp":
-            return fallback_root
+        # if fallback_root.name == "xhs-browser-automation-mcp":
+        return fallback_root
     
     # 如果所有方法都找不到正确的目录，返回 fallback_root
     # 这样可以避免在找不到项目根目录时抛出异常

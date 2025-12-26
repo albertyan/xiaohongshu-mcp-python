@@ -1,0 +1,2345 @@
+{
+  "global": {
+    "appSettings": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "notificationInterval": 30,
+        "prefetchTimeout": 3001,
+        "prefetchRedisExpires": 259200000,
+        "searchFilterGuideConfig": {
+          "maxDailyShow": 1,
+          "maxTotalShow": 3,
+          "showInterval": 1,
+          "validDays": 15,
+          "autoCloseDelay": 5000
+        },
+        "retryFeeds": true,
+        "grayModeConfig": {
+          "global": false,
+          "dateRange": [
+            "2023-08-01 00:00:00",
+            "2023-08-19 23:59:59"
+          ],
+          "greyRule": {
+            "layout": {
+              "enable": false,
+              "pages": [
+                "Explore"
+              ]
+            },
+            "pages": [
+              "Explore"
+            ]
+          },
+          "disableLikeNotes": [
+            "64ce36f7000000000c036ba5"
+          ],
+          "disableSearchHint": false
+        },
+        "NIO": true,
+        "ICPInfoList": [
+          {
+            "label": "沪ICP备13030189号",
+            "link": "//beian.miit.gov.cn/",
+            "title": "小红书_沪ICP备"
+          },
+          {
+            "label": "营业执照",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/5581076bd6b6af2e0e943abb024ad0e16f2ebff6.pdf",
+            "title": "小红书_营业执照"
+          },
+          {
+            "label": "2024沪公网安备31010102002533号",
+            "link": "//www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010102002533",
+            "title": "小红书_沪公网安备"
+          },
+          {
+            "label": "增值电信业务经营许可证：沪B2-20150021",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform-file/104101b831hhkkll23u0678gtks7tu70004en2n231udpe",
+            "title": "小红书_网文"
+          },
+          {
+            "label": "医疗器械网络交易服务第三方平台备案：(沪)网械平台备字[2019]第00006号",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/410dce57bc12a6d7e5808060e47644fbe46f68ff.pdf",
+            "title": "小红书_医疗器械网络交易服务"
+          },
+          {
+            "label": "互联网药品信息服务资格证书：(沪)-经营性-2023-0144",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/f37a08cacc088061beb38329c387c32fc48fc6fe.pdf",
+            "title": "小红书_互联网药品信息服务"
+          },
+          {
+            "label": "违法不良信息举报电话：4006676810",
+            "link": "//www.shjbzx.cn",
+            "title": "小红书_上海市互联网举报中心"
+          },
+          {
+            "label": "上海市互联网举报中心",
+            "link": "//www.shjbzx.cn",
+            "title": "小红书_上海市互联网举报中心"
+          },
+          {
+            "label": "网上有害信息举报专区",
+            "link": "//www.12377.cn",
+            "title": "网上有害信息举报专区"
+          },
+          {
+            "label": "自营经营者信息",
+            "link": "//dc.xhscdn.com/06c2adb0-b353-11e9-9d0c-7be9ff8961c1/自营经营者信息公示.pdf",
+            "title": "小红书_沪公网安备"
+          },
+          {
+            "label": "网络文化经营许可证：沪网文(2024)1344-086号",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/7970f6e8b70aedc995ba273d04b6b6751abcd63c.pdf",
+            "title": "小红书_网络文化经营许可"
+          },
+          {
+            "label": "个性化推荐算法 网信算备310101216601302230019号",
+            "link": "https://beian.cac.gov.cn/api/static/fileUpload/principalOrithm/additional/user_c015445c-80ac-45f7-94d7-3871e961b1fe_d4425f3b-7f35-45af-b8d4-badd4424d6d5.pdf"
+          }
+        ],
+        "disableBanAlert": "false",
+        "showAdBlockAlert": 0,
+        "aiSearchConfig": {
+          "searchInputImageConfig": {
+            "disableTextWhenAcrossWeb": "联网搜索暂不支持上传图片"
+          },
+          "acrosssWebConfig": {
+            "enable": false,
+            "text": "联网搜索",
+            "icon": "",
+            "disableTextWhenInputImage": "图片搜索暂不支持联网搜索",
+            "offTooltipContent": "",
+            "onTooltipContent": "开启后将搜索全网内容"
+          },
+          "searchHintConfig": {
+            "homePageSearchInputHint": "搜索或输入任何问题"
+          },
+          "sugConfig": {
+            "maxSugCount": 10
+          }
+        },
+        "signConfig": {
+          "url": "https://fe-static.xhscdn.com/as/v2/ds/4c0bab9011f51d35ca6280649340e9b9.js"
+        }
+      },
+      "_value": {
+        "notificationInterval": 30,
+        "prefetchTimeout": 3001,
+        "prefetchRedisExpires": 259200000,
+        "searchFilterGuideConfig": {
+          "maxDailyShow": 1,
+          "maxTotalShow": 3,
+          "showInterval": 1,
+          "validDays": 15,
+          "autoCloseDelay": 5000
+        },
+        "retryFeeds": true,
+        "grayModeConfig": {
+          "global": false,
+          "dateRange": [
+            "2023-08-01 00:00:00",
+            "2023-08-19 23:59:59"
+          ],
+          "greyRule": {
+            "layout": {
+              "enable": false,
+              "pages": [
+                "Explore"
+              ]
+            },
+            "pages": [
+              "Explore"
+            ]
+          },
+          "disableLikeNotes": [
+            "64ce36f7000000000c036ba5"
+          ],
+          "disableSearchHint": false
+        },
+        "NIO": true,
+        "ICPInfoList": [
+          {
+            "label": "沪ICP备13030189号",
+            "link": "//beian.miit.gov.cn/",
+            "title": "小红书_沪ICP备"
+          },
+          {
+            "label": "营业执照",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/5581076bd6b6af2e0e943abb024ad0e16f2ebff6.pdf",
+            "title": "小红书_营业执照"
+          },
+          {
+            "label": "2024沪公网安备31010102002533号",
+            "link": "//www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010102002533",
+            "title": "小红书_沪公网安备"
+          },
+          {
+            "label": "增值电信业务经营许可证：沪B2-20150021",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform-file/104101b831hhkkll23u0678gtks7tu70004en2n231udpe",
+            "title": "小红书_网文"
+          },
+          {
+            "label": "医疗器械网络交易服务第三方平台备案：(沪)网械平台备字[2019]第00006号",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/410dce57bc12a6d7e5808060e47644fbe46f68ff.pdf",
+            "title": "小红书_医疗器械网络交易服务"
+          },
+          {
+            "label": "互联网药品信息服务资格证书：(沪)-经营性-2023-0144",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/f37a08cacc088061beb38329c387c32fc48fc6fe.pdf",
+            "title": "小红书_互联网药品信息服务"
+          },
+          {
+            "label": "违法不良信息举报电话：4006676810",
+            "link": "//www.shjbzx.cn",
+            "title": "小红书_上海市互联网举报中心"
+          },
+          {
+            "label": "上海市互联网举报中心",
+            "link": "//www.shjbzx.cn",
+            "title": "小红书_上海市互联网举报中心"
+          },
+          {
+            "label": "网上有害信息举报专区",
+            "link": "//www.12377.cn",
+            "title": "网上有害信息举报专区"
+          },
+          {
+            "label": "自营经营者信息",
+            "link": "//dc.xhscdn.com/06c2adb0-b353-11e9-9d0c-7be9ff8961c1/自营经营者信息公示.pdf",
+            "title": "小红书_沪公网安备"
+          },
+          {
+            "label": "网络文化经营许可证：沪网文(2024)1344-086号",
+            "link": "//fe-video-qc.xhscdn.com/fe-platform/7970f6e8b70aedc995ba273d04b6b6751abcd63c.pdf",
+            "title": "小红书_网络文化经营许可"
+          },
+          {
+            "label": "个性化推荐算法 网信算备310101216601302230019号",
+            "link": "https://beian.cac.gov.cn/api/static/fileUpload/principalOrithm/additional/user_c015445c-80ac-45f7-94d7-3871e961b1fe_d4425f3b-7f35-45af-b8d4-badd4424d6d5.pdf"
+          }
+        ],
+        "disableBanAlert": "false",
+        "showAdBlockAlert": 0,
+        "aiSearchConfig": {
+          "searchInputImageConfig": {
+            "disableTextWhenAcrossWeb": "联网搜索暂不支持上传图片"
+          },
+          "acrosssWebConfig": {
+            "enable": false,
+            "text": "联网搜索",
+            "icon": "",
+            "disableTextWhenInputImage": "图片搜索暂不支持联网搜索",
+            "offTooltipContent": "",
+            "onTooltipContent": "开启后将搜索全网内容"
+          },
+          "searchHintConfig": {
+            "homePageSearchInputHint": "搜索或输入任何问题"
+          },
+          "sugConfig": {
+            "maxSugCount": 10
+          }
+        },
+        "signConfig": {
+          "url": "https://fe-static.xhscdn.com/as/v2/ds/4c0bab9011f51d35ca6280649340e9b9.js"
+        }
+      }
+    },
+    "supportWebp": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "serverTime": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 1766729967878,
+      "_value": 1766729967878
+    },
+    "grayMode": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "referer": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "pwaAddDesktopPrompt": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "firstVisitUrl": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "https://www.xiaohongshu.com/search_result?keyword=%E6%95%A3%E5%88%A9%E7%97%9B&source=web_explore_feed&type=51",
+      "_value": "https://www.xiaohongshu.com/search_result?keyword=%E6%95%A3%E5%88%A9%E7%97%9B&source=web_explore_feed&type=51"
+    },
+    "easyAccessModalVisible": {
+      "addDesktopGuide": false,
+      "collectGuide": false,
+      "keyboardList": false,
+      "miniWindowGuide": false
+    },
+    "currentLayout": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "default",
+      "_value": "default"
+    },
+    "fullscreenLocking": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "feedbackPopupVisible": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "trackFps": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "supportAVIF": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "imgFormatCollect": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "ssr": [
+          "jpg",
+          "webp",
+          "avif"
+        ],
+        "csr": [
+          "jpg",
+          "webp",
+          "avif"
+        ]
+      },
+      "_value": {
+        "ssr": [
+          "jpg",
+          "webp",
+          "avif"
+        ],
+        "csr": [
+          "jpg",
+          "webp",
+          "avif"
+        ]
+      }
+    },
+    "isUndertake": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "aiSearchMode": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "large",
+      "_value": "large"
+    },
+    "sideCollapse": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "currentNoteColumnWidthInAIFeeds": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    }
+  },
+  "user": {
+    "loggedIn": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "activated": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "userInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "desc": "还没有简介",
+        "gender": 1,
+        "images": "https://sns-avatar-qc.xhscdn.com/avatar/166ad12ae9a7f6fbb4bbbf88d417895f.jpg?imageView2/2/w/360/format/webp",
+        "imageb": "https://sns-avatar-qc.xhscdn.com/avatar/166ad12ae9a7f6fbb4bbbf88d417895f.jpg?imageView2/2/w/540/format/webp",
+        "guest": false,
+        "redId": "1136829171",
+        "userId": "607d48fb0000000001000de7",
+        "nickname": "小红薯607E2C52"
+      },
+      "_value": {
+        "desc": "还没有简介",
+        "gender": 1,
+        "images": "https://sns-avatar-qc.xhscdn.com/avatar/166ad12ae9a7f6fbb4bbbf88d417895f.jpg?imageView2/2/w/360/format/webp",
+        "imageb": "https://sns-avatar-qc.xhscdn.com/avatar/166ad12ae9a7f6fbb4bbbf88d417895f.jpg?imageView2/2/w/540/format/webp",
+        "guest": false,
+        "redId": "1136829171",
+        "userId": "607d48fb0000000001000de7",
+        "nickname": "小红薯607E2C52"
+      }
+    },
+    "follow": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "userPageData": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {},
+      "_value": {}
+    },
+    "activeTab": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "key": 0,
+        "index": 0,
+        "query": "note",
+        "label": "笔记",
+        "lock": false,
+        "subTabs": null,
+        "feedType": 0
+      },
+      "_value": {
+        "key": 0,
+        "index": 0,
+        "query": "note",
+        "label": "笔记",
+        "lock": false,
+        "subTabs": null,
+        "feedType": 0
+      }
+    },
+    "notes": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        [],
+        [],
+        [],
+        []
+      ],
+      "_value": [
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    "isFetchingNotes": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "_value": [
+        false,
+        false,
+        false,
+        false
+      ]
+    },
+    "tabScrollTop": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "_value": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "userFetchingStatus": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "userNoteFetchingStatus": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "_value": [
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "bannedInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "userId": "",
+        "serverBanned": false,
+        "code": 0,
+        "showAlert": false,
+        "reason": "",
+        "api": ""
+      },
+      "_value": {
+        "userId": "",
+        "serverBanned": false,
+        "code": 0,
+        "showAlert": false,
+        "reason": "",
+        "api": ""
+      }
+    },
+    "firstFetchNote": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "noteQueries": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        },
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        },
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        },
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        }
+      ],
+      "_value": [
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        },
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        },
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        },
+        {
+          "num": 30,
+          "cursor": "",
+          "userId": "",
+          "hasMore": true,
+          "page": 1
+        }
+      ]
+    },
+    "pageScrolled": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 0,
+      "_value": 0
+    },
+    "activeSubTab": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "isOwnBoard": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    }
+  },
+  "board": {
+    "boardListData": {
+      "607d48fb0000000001000de7": {
+        "boards": [],
+        "page": 1,
+        "pageSize": 15
+      }
+    },
+    "isLoadingBoardList": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "boardDetails": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {},
+      "_value": {}
+    },
+    "boardFeedsMap": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {},
+      "_value": {}
+    },
+    "boardPageStatus": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "pending",
+      "_value": "pending"
+    },
+    "userBoardList": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    }
+  },
+  "login": {
+    "loginMethod": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "from": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "showLogin": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "agreed": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "showTooltip": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "loginData": {
+      "phone": "",
+      "authCode": ""
+    },
+    "errors": {
+      "phone": "",
+      "authCode": ""
+    },
+    "qrData": {
+      "backend": {
+        "qrId": "",
+        "code": ""
+      },
+      "image": "",
+      "status": "un_scanned"
+    },
+    "counter": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "inAntiSpamChecking": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "recentFrom": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "isObPagesVisible": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "obPageFillInProgress": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    },
+    "verificationCodeStartTime": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 0,
+      "_value": 0
+    },
+    "ageSelectValue": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "21",
+      "_value": "21"
+    },
+    "hobbySelectValue": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "genderSelectValue": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "inSpamCheckSendAuthCode": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "isRegFusing": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "loginStep": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 0,
+      "_value": 0
+    },
+    "isLogining": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "loginPadMountedTime": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 0,
+      "_value": 0
+    },
+    "loginTips": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "登录后推荐更懂你的笔记",
+      "_value": "登录后推荐更懂你的笔记"
+    },
+    "isRiskUser": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "closeLoginModal": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "traceId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "inAntiSpamCheckLogin": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    }
+  },
+  "feed": {
+    "query": {
+      "cursorScore": "",
+      "num": 30,
+      "refreshType": 1,
+      "noteIndex": 0,
+      "unreadBeginNoteId": "",
+      "unreadEndNoteId": "",
+      "unreadNoteCount": 0,
+      "category": "homefeed_recommend",
+      "searchKey": "",
+      "needNum": 20,
+      "imageFormats": [],
+      "needFilterImage": false
+    },
+    "isFetching": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "isError": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "feedsWrapper": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "undertakeNote": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "feeds": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "currentChannel": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "homefeed_recommend",
+      "_value": "homefeed_recommend"
+    },
+    "unreadInfo": {
+      "cachedFeeds": [],
+      "unreadBeginNoteId": "",
+      "unreadEndNoteId": "",
+      "unreadNoteCount": 0,
+      "timestamp": 0
+    },
+    "validIds": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "noteIds": []
+      },
+      "_value": {
+        "noteIds": []
+      }
+    },
+    "mfStatistics": {
+      "timestamp": 0,
+      "visitTimes": 0,
+      "readFeedCount": 0
+    },
+    "channels": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "isResourceDisplay": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "isActivityEnd": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "cancelFeedRequest": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "prefetchId": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "mfRequestMetaData": {
+      "start": null,
+      "lasting": null
+    },
+    "placeholderFeeds": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "feedsCacheLogInfo": {
+      "flag": "unknown",
+      "errorCode": 0,
+      "isHitMfCache": false,
+      "SSRDocumentChecked": false,
+      "SSRDocumentCheckedSuccess": false
+    },
+    "isUsingPlaceholderFeeds": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "placeholderFeedsConsumed": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "isReplace": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "isFirstSuccessFetched": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "imgNoteFilterStatus": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "unchecked",
+      "_value": "unchecked"
+    },
+    "ssrRequestStatus": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 5,
+      "_value": 5
+    },
+    "ssrRenderExtra": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    }
+  },
+  "layout": {
+    "layoutInfoReady": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "columns": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 5,
+      "_value": 5
+    },
+    "columnsWithSidebar": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 6,
+      "_value": 6
+    },
+    "gap": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "vertical": 16,
+        "horizontal": 32
+      },
+      "_value": {
+        "vertical": 16,
+        "horizontal": 32
+      }
+    },
+    "columnWidth": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 250.66666666666666,
+      "_value": 250.66666666666666
+    },
+    "interactionWidth": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 440,
+      "_value": 440
+    },
+    "widthType": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "normal",
+      "_value": "normal"
+    },
+    "bufferRow": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 3,
+      "_value": 3
+    }
+  },
+  "aiAbExp": {},
+  "search": {
+    "state": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "loading",
+      "_value": "loading"
+    },
+    "searchContext": {
+      "keyword": "散利痛",
+      "page": 1,
+      "pageSize": 20,
+      "searchId": "2froy3h2l6kem09wllhht@2froy3tfsuxqc9grg0q2g",
+      "sort": "general",
+      "noteType": 0,
+      "extFlags": [],
+      "filters": [
+        {
+          "tags": [
+            "popularity_descending"
+          ],
+          "type": "sort_type"
+        },
+        {
+          "tags": [
+            "普通笔记"
+          ],
+          "type": "filter_note_type"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_note_time"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_note_range"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_pos_distance"
+        }
+      ],
+      "geo": "",
+      "imageFormats": [
+        "jpg",
+        "webp",
+        "avif"
+      ]
+    },
+    "feeds": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "searchValue": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "散利痛",
+      "_value": "散利痛"
+    },
+    "suggestions": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "userInputSugTrigger": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "散利痛",
+      "_value": "散利痛"
+    },
+    "keywordFrom": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 51,
+      "_value": 51
+    },
+    "tagSearch": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        {
+          "id": "0",
+          "name": "综合",
+          "originText": "综合",
+          "showType": 0,
+          "exposed": true
+        },
+        {
+          "needLocationInfo": false,
+          "id": "偏头痛",
+          "name": "偏头痛",
+          "showType": 2,
+          "originText": "散利痛偏头痛",
+          "exposed": true
+        },
+        {
+          "id": "功效",
+          "name": "功效",
+          "showType": 2,
+          "originText": "散利痛功效",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "id": "起效时间",
+          "name": "起效时间",
+          "showType": 2,
+          "originText": "散利痛起效时间",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "id": "牙疼",
+          "name": "牙疼",
+          "showType": 2,
+          "originText": "散利痛牙疼",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "originText": "散利痛对乙酰氨基酚",
+          "needLocationInfo": false,
+          "id": "对乙酰氨基酚",
+          "name": "对乙酰氨基酚",
+          "showType": 2,
+          "exposed": true
+        },
+        {
+          "showType": 2,
+          "originText": "散利痛说明书",
+          "needLocationInfo": false,
+          "id": "说明书",
+          "name": "说明书",
+          "exposed": true
+        },
+        {
+          "id": "甲流",
+          "name": "甲流",
+          "showType": 2,
+          "originText": "散利痛甲流",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "name": "退烧效果",
+          "showType": 2,
+          "originText": "散利痛退烧效果",
+          "needLocationInfo": false,
+          "id": "退烧效果",
+          "exposed": true
+        },
+        {
+          "id": "儿童",
+          "name": "儿童",
+          "showType": 2,
+          "originText": "散利痛儿童",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "name": "正确吃法",
+          "showType": 2,
+          "originText": "散利痛正确吃法",
+          "needLocationInfo": false,
+          "id": "正确吃法",
+          "exposed": true
+        },
+        {
+          "name": "禁忌",
+          "showType": 2,
+          "originText": "散利痛禁忌",
+          "needLocationInfo": false,
+          "id": "禁忌",
+          "exposed": true
+        },
+        {
+          "originText": "散利痛过敏症状",
+          "needLocationInfo": false,
+          "id": "过敏症状",
+          "name": "过敏症状",
+          "showType": 2,
+          "exposed": true
+        },
+        {
+          "name": "睡不着",
+          "showType": 2,
+          "originText": "散利痛睡不着",
+          "needLocationInfo": false,
+          "id": "睡不着",
+          "exposed": true
+        },
+        {
+          "originText": "散利痛失眠",
+          "needLocationInfo": false,
+          "id": "失眠",
+          "name": "失眠",
+          "showType": 2,
+          "exposed": true
+        },
+        {
+          "originText": "散利痛歌词",
+          "needLocationInfo": false,
+          "id": "歌词",
+          "name": "歌词",
+          "showType": 2
+        }
+      ],
+      "_value": [
+        {
+          "id": "0",
+          "name": "综合",
+          "originText": "综合",
+          "showType": 0,
+          "exposed": true
+        },
+        {
+          "needLocationInfo": false,
+          "id": "偏头痛",
+          "name": "偏头痛",
+          "showType": 2,
+          "originText": "散利痛偏头痛",
+          "exposed": true
+        },
+        {
+          "id": "功效",
+          "name": "功效",
+          "showType": 2,
+          "originText": "散利痛功效",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "id": "起效时间",
+          "name": "起效时间",
+          "showType": 2,
+          "originText": "散利痛起效时间",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "id": "牙疼",
+          "name": "牙疼",
+          "showType": 2,
+          "originText": "散利痛牙疼",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "originText": "散利痛对乙酰氨基酚",
+          "needLocationInfo": false,
+          "id": "对乙酰氨基酚",
+          "name": "对乙酰氨基酚",
+          "showType": 2,
+          "exposed": true
+        },
+        {
+          "showType": 2,
+          "originText": "散利痛说明书",
+          "needLocationInfo": false,
+          "id": "说明书",
+          "name": "说明书",
+          "exposed": true
+        },
+        {
+          "id": "甲流",
+          "name": "甲流",
+          "showType": 2,
+          "originText": "散利痛甲流",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "name": "退烧效果",
+          "showType": 2,
+          "originText": "散利痛退烧效果",
+          "needLocationInfo": false,
+          "id": "退烧效果",
+          "exposed": true
+        },
+        {
+          "id": "儿童",
+          "name": "儿童",
+          "showType": 2,
+          "originText": "散利痛儿童",
+          "needLocationInfo": false,
+          "exposed": true
+        },
+        {
+          "name": "正确吃法",
+          "showType": 2,
+          "originText": "散利痛正确吃法",
+          "needLocationInfo": false,
+          "id": "正确吃法",
+          "exposed": true
+        },
+        {
+          "name": "禁忌",
+          "showType": 2,
+          "originText": "散利痛禁忌",
+          "needLocationInfo": false,
+          "id": "禁忌",
+          "exposed": true
+        },
+        {
+          "originText": "散利痛过敏症状",
+          "needLocationInfo": false,
+          "id": "过敏症状",
+          "name": "过敏症状",
+          "showType": 2,
+          "exposed": true
+        },
+        {
+          "name": "睡不着",
+          "showType": 2,
+          "originText": "散利痛睡不着",
+          "needLocationInfo": false,
+          "id": "睡不着",
+          "exposed": true
+        },
+        {
+          "originText": "散利痛失眠",
+          "needLocationInfo": false,
+          "id": "失眠",
+          "name": "失眠",
+          "showType": 2,
+          "exposed": true
+        },
+        {
+          "originText": "散利痛歌词",
+          "needLocationInfo": false,
+          "id": "歌词",
+          "name": "歌词",
+          "showType": 2
+        }
+      ]
+    },
+    "activeTagSearch": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    },
+    "searchFeedsWrapper": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {},
+      "_value": {}
+    },
+    "currentSearchType": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "all",
+      "_value": "all"
+    },
+    "hintWord": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "title": "搜索小红书",
+        "searchWord": "小红书网页版",
+        "hintWordRequestId": "default",
+        "type": "default"
+      },
+      "_value": {
+        "title": "搜索小红书",
+        "searchWord": "小红书网页版",
+        "hintWordRequestId": "default",
+        "type": "default"
+      }
+    },
+    "sugType": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    },
+    "queryTrendingInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "queryTrendingParams": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "source": "search",
+        "searchType": "trend",
+        "lastQuery": "",
+        "lastQueryTime": 0,
+        "wordRequestSituation": "FIRST_ENTER",
+        "hintWord": "",
+        "hintWordType": "",
+        "hintWordRequestId": ""
+      },
+      "_value": {
+        "source": "search",
+        "searchType": "trend",
+        "lastQuery": "",
+        "lastQueryTime": 0,
+        "wordRequestSituation": "FIRST_ENTER",
+        "hintWord": "",
+        "hintWordType": "",
+        "hintWordRequestId": ""
+      }
+    },
+    "queryTrendingFetched": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "oneboxInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "type": "security",
+        "securityOneBox": {
+          "clickable": false,
+          "title": "身体不适请及时就医",
+          "desc": "医疗领域专业性强，就诊用药请到正规医疗场所",
+          "link": "",
+          "trackType": "security",
+          "id": "10",
+          "image": "https://picasso-static.xiaohongshu.com/fe-platform/05cd5b5b14f97928575e7352e2b278b86ca02b6a.png",
+          "smallImage": true
+        }
+      },
+      "_value": {
+        "type": "security",
+        "securityOneBox": {
+          "clickable": false,
+          "title": "身体不适请及时就医",
+          "desc": "医疗领域专业性强，就诊用药请到正规医疗场所",
+          "link": "",
+          "trackType": "security",
+          "id": "10",
+          "image": "https://picasso-static.xiaohongshu.com/fe-platform/05cd5b5b14f97928575e7352e2b278b86ca02b6a.png",
+          "smallImage": true
+        }
+      }
+    },
+    "hasMore": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "firstEnterSearchPage": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "userLists": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "fetchUserListsStatus": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "auto",
+      "_value": "auto"
+    },
+    "isFetchingUserLists": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "hasMoreUser": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "searchCplId": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "wordRequestId": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "historyList": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        "散利痛"
+      ],
+      "_value": [
+        "散利痛"
+      ]
+    },
+    "searchPageHasPrevRoute": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "searchHotSpots": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "hotspotQueryNoteStep": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "display",
+      "_value": "display"
+    },
+    "hotspotQueryNoteIndex": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 0,
+      "_value": 0
+    },
+    "canShowHotspotQueryNote": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": true,
+      "_value": true
+    },
+    "forceHotspotSearch": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "searchCardHotSpots": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "isHotspotSearch": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "filters": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        {
+          "type": "single",
+          "name": "排序依据",
+          "id": "sort_type",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "general",
+              "name": "综合"
+            },
+            {
+              "id": "time_descending",
+              "name": "最新",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "needLocationInfo": false,
+              "id": "popularity_descending",
+              "name": "最多点赞",
+              "showType": 0
+            },
+            {
+              "id": "comment_descending",
+              "name": "最多评论",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "collect_descending",
+              "name": "最多收藏"
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "笔记类型",
+          "id": "filter_note_type",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "needLocationInfo": false,
+              "id": "不限",
+              "name": "不限",
+              "showType": 0
+            },
+            {
+              "id": "视频笔记",
+              "name": "视频",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "id": "普通笔记",
+              "name": "图文",
+              "showType": 0,
+              "needLocationInfo": false
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "发布时间",
+          "id": "filter_note_time",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "id": "不限",
+              "name": "不限",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "needLocationInfo": false,
+              "id": "一天内",
+              "name": "一天内",
+              "showType": 0
+            },
+            {
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "一周内",
+              "name": "一周内"
+            },
+            {
+              "needLocationInfo": false,
+              "id": "半年内",
+              "name": "半年内",
+              "showType": 0
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "搜索范围",
+          "id": "filter_note_range",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "id": "不限",
+              "name": "不限",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "id": "已看过",
+              "name": "已看过",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "needLocationInfo": false,
+              "id": "未看过",
+              "name": "未看过",
+              "showType": 0
+            },
+            {
+              "needLocationInfo": false,
+              "id": "已关注",
+              "name": "已关注",
+              "showType": 0
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "位置距离",
+          "id": "filter_pos_distance",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "name": "不限",
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "不限"
+            },
+            {
+              "id": "同城",
+              "name": "同城",
+              "showType": 0,
+              "needLocationInfo": true
+            },
+            {
+              "id": "附近",
+              "name": "附近",
+              "showType": 0,
+              "needLocationInfo": true
+            }
+          ]
+        }
+      ],
+      "_value": [
+        {
+          "type": "single",
+          "name": "排序依据",
+          "id": "sort_type",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "general",
+              "name": "综合"
+            },
+            {
+              "id": "time_descending",
+              "name": "最新",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "needLocationInfo": false,
+              "id": "popularity_descending",
+              "name": "最多点赞",
+              "showType": 0
+            },
+            {
+              "id": "comment_descending",
+              "name": "最多评论",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "collect_descending",
+              "name": "最多收藏"
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "笔记类型",
+          "id": "filter_note_type",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "needLocationInfo": false,
+              "id": "不限",
+              "name": "不限",
+              "showType": 0
+            },
+            {
+              "id": "视频笔记",
+              "name": "视频",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "id": "普通笔记",
+              "name": "图文",
+              "showType": 0,
+              "needLocationInfo": false
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "发布时间",
+          "id": "filter_note_time",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "id": "不限",
+              "name": "不限",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "needLocationInfo": false,
+              "id": "一天内",
+              "name": "一天内",
+              "showType": 0
+            },
+            {
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "一周内",
+              "name": "一周内"
+            },
+            {
+              "needLocationInfo": false,
+              "id": "半年内",
+              "name": "半年内",
+              "showType": 0
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "搜索范围",
+          "id": "filter_note_range",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "id": "不限",
+              "name": "不限",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "id": "已看过",
+              "name": "已看过",
+              "showType": 0,
+              "needLocationInfo": false
+            },
+            {
+              "needLocationInfo": false,
+              "id": "未看过",
+              "name": "未看过",
+              "showType": 0
+            },
+            {
+              "needLocationInfo": false,
+              "id": "已关注",
+              "name": "已关注",
+              "showType": 0
+            }
+          ]
+        },
+        {
+          "type": "single",
+          "name": "位置距离",
+          "id": "filter_pos_distance",
+          "invisible": true,
+          "wordRequestId": "69e51171-2faa-4275-8551-c2fc7f6ea6d6#1766729968483",
+          "groupShowType": 0,
+          "filterTags": [
+            {
+              "name": "不限",
+              "showType": 0,
+              "needLocationInfo": false,
+              "id": "不限"
+            },
+            {
+              "id": "同城",
+              "name": "同城",
+              "showType": 0,
+              "needLocationInfo": true
+            },
+            {
+              "id": "附近",
+              "name": "附近",
+              "showType": 0,
+              "needLocationInfo": true
+            }
+          ]
+        }
+      ]
+    },
+    "activeFilters": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "_value": [
+        2,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    "filterParams": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [
+        {
+          "tags": [
+            "popularity_descending"
+          ],
+          "type": "sort_type"
+        },
+        {
+          "tags": [
+            "普通笔记"
+          ],
+          "type": "filter_note_type"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_note_time"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_note_range"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_pos_distance"
+        }
+      ],
+      "_value": [
+        {
+          "tags": [
+            "popularity_descending"
+          ],
+          "type": "sort_type"
+        },
+        {
+          "tags": [
+            "普通笔记"
+          ],
+          "type": "filter_note_type"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_note_time"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_note_range"
+        },
+        {
+          "tags": [
+            "不限"
+          ],
+          "type": "filter_pos_distance"
+        }
+      ]
+    },
+    "sessionId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "16e4f195-214a-4e07-a66d-c8a0981330e3",
+      "_value": "16e4f195-214a-4e07-a66d-c8a0981330e3"
+    },
+    "rootSearchId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "2froy3h2l6kem09wllhht",
+      "_value": "2froy3h2l6kem09wllhht"
+    },
+    "searchUserContext": {
+      "keyword": "",
+      "searchId": "",
+      "page": 1,
+      "pageSize": 15,
+      "bizType": "web_search_user",
+      "requestId": ""
+    },
+    "aiSearchAcrosssWeb": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "aiAcrosssWebActivedFromHeaderInput": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "aiSearchImageList": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "isSearchFromAiInput": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "currentUserMessageId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    },
+    "currentSearchRoundId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    },
+    "hasPreFetchedNotes": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "currentAnchorId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": -1,
+      "_value": -1
+    },
+    "isRoundSwitching": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    }
+  },
+  "conversation": {
+    "activeConversation": {
+      "__v_isRef": true,
+      "__v_isShallow": true,
+      "_rawValue": null,
+      "_value": null
+    },
+    "historyQuerys": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    },
+    "currentActiveRoundId": {
+      "__v_isRef": true,
+      "__v_isShallow": true,
+      "_rawValue": null,
+      "_value": null
+    },
+    "isInitializing": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "coordinator": {
+      "__v_isRef": true,
+      "__v_isShallow": true,
+      "_rawValue": null,
+      "_value": null
+    }
+  },
+  "traceSourceStore": {
+    "traceSourceInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "traceSourceKeywordInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    },
+    "drawerPriorityMap": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "traceSource": 10,
+        "traceSourceKeyword": 10
+      },
+      "_value": {
+        "traceSource": 10,
+        "traceSourceKeyword": 10
+      }
+    }
+  },
+  "aiSugHistory": {
+    "historyList": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": [],
+      "_value": []
+    }
+  },
+  "AiGuideWords": {
+    "guideWords": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    }
+  },
+  "AiSugDataForChat": {
+    "guideWordsData": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": null,
+      "_value": null
+    }
+  },
+  "activity": {
+    "isOpen": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "currentUrl": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "entryList": [
+      {
+        "type": 1,
+        "show": false,
+        "openType": 0,
+        "link": ""
+      }
+    ]
+  },
+  "note": {
+    "prevRouteData": {},
+    "prevRoute": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "Empty",
+      "_value": "Empty"
+    },
+    "commentTarget": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {},
+      "_value": {}
+    },
+    "isImgFullscreen": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "gotoPage": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "firstNoteId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "autoOpenNote": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "topCommentId": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "",
+      "_value": ""
+    },
+    "noteDetailMap": {
+      "undefined": {
+        "comments": {
+          "list": [],
+          "cursor": "",
+          "hasMore": true,
+          "loading": false,
+          "firstRequestFinish": false
+        },
+        "currentTime": 0,
+        "note": {}
+      },
+      "": {
+        "comments": {
+          "list": [],
+          "cursor": "",
+          "hasMore": true,
+          "loading": false,
+          "firstRequestFinish": false
+        },
+        "currentTime": 0,
+        "note": {}
+      }
+    },
+    "serverRequestInfo": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": {
+        "state": "success",
+        "errorCode": 0,
+        "errMsg": ""
+      },
+      "_value": {
+        "state": "success",
+        "errorCode": 0,
+        "errMsg": ""
+      }
+    },
+    "volume": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 0,
+      "_value": 0
+    },
+    "recommendVideoMap": {},
+    "videoFeedType": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": "note_source",
+      "_value": "note_source"
+    },
+    "rate": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 1,
+      "_value": 1
+    },
+    "currentNoteId": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "forceScrollToComment": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "mediaWidth": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 450,
+      "_value": 450
+    },
+    "noteHeight": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": 960,
+      "_value": 960
+    }
+  },
+  "nioStore": {
+    "collectionListDataSource": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    },
+    "error": {
+      "__v_isRef": true,
+      "__v_isShallow": false
+    }
+  },
+  "notification": {
+    "isFetching": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": false,
+      "_value": false
+    },
+    "activeTabKey": {
+      "__v_isRef": true,
+      "__v_isShallow": false,
+      "_rawValue": -1,
+      "_value": -1
+    },
+    "notificationCount": {
+      "unreadCount": 0,
+      "mentions": 0,
+      "likes": 0,
+      "connections": 0
+    },
+    "notificationMap": {
+      "mentions": {
+        "messageList": [],
+        "hasMore": true,
+        "cursor": ""
+      },
+      "likes": {
+        "messageList": [],
+        "hasMore": true,
+        "cursor": ""
+      },
+      "connections": {
+        "messageList": [],
+        "hasMore": true,
+        "cursor": ""
+      }
+    }
+  }
+}
