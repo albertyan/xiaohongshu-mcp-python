@@ -28,7 +28,9 @@
     "permissions": [
       "tabs",
       "scripting",
-      "storage"
+      "storage",
+      "cookies",
+      "downloads"
     ]
   }
 }

@@ -4,9 +4,13 @@ MCP 工具函数模块
 """
 
 import json
-from typing import Optional, Union, List
+import base64
+import os
+from pathlib import Path
+from typing import Optional, Union, List,Dict, Any
 from loguru import logger
 from fastmcp import Context, FastMCP
+
 
 from ..services.service import XiaohongshuService
 from ..config import PublishImageContent, PublishVideoContent, settings
@@ -239,7 +243,7 @@ async def xiaohongshu_check_login_session(username: Optional[str] = None) -> dic
         current_user = username or settings.GLOBAL_USER
         
         # 检查本地 cookies 状态
-        user_session_status = await user_session_manager.get_user_session_status(current_user)
+        user_session_status = await user_session_manager.get_user_session_status(current_user, headless=settings.BROWSER_HEADLESS)
         
         if not user_session_status:
             return {
@@ -843,5 +847,130 @@ async def xiaohongshu_get_feed_detail(
             "success": False,
             "error": str(e),
             "message": "获取笔记详情失败"
+        }
+
+
+@mcp.tool
+async def xiaohongshu_upload_cookies(
+    cookie_data: Optional[str] = None,
+    file_base64: Optional[str] = None,
+    username: Optional[str] = None
+) -> dict:
+    """
+    上传并保存 Cookie（支持文件上传）
+    
+    为什么这样设计：
+    - 客户端上传文件通常以 base64 形式传递；在服务端统一解析与校验可以保证数据质量
+    - 同时保留纯字符串 cookie_data 输入，方便通过请求头形式快速注入
+    - 将不同来源的 Cookie 统一落到用户专属文件，便于浏览器上下文复用
+    
+    Args:
+        cookie_data: 纯文本 Cookie（如请求头格式：name=value; ...）
+        file_base64: 以 base64 编码的文件内容（JSON 列表或对象）
+        username: 用户名（可选，不提供则使用全局用户）
+        
+    Returns:
+        保存结果，包含文件路径
+    """
+    try:
+        current_user = username or settings.GLOBAL_USER
+        storage = CookieStorage(f"cookies_{current_user}.json")
+        cookies_to_save: List[Dict[str, Any]] = []
+
+        # 优先处理文件上传（base64）
+        if file_base64:
+            try:
+                from urllib.parse import unquote
+                raw_bytes = base64.standard_b64decode(file_base64)
+                text = unquote(raw_bytes.decode("utf-8", errors="ignore"))
+            except Exception as e:
+                return {
+                    "success": False,
+                    "error": f"文件解码失败: {str(e)}",
+                    "message": "file_base64 非法或无法解码"
+                }
+
+            # 尝试按 JSON 解析（兼容扩展导出的 chrome.cookies.getAll 列表）
+            try:
+                cookies_to_save = json.loads(text)
+            except json.JSONDecodeError:
+                return {
+                "success": False,
+                "error": str(e),
+                "message": "保存 Cookie 文件失败"
+            }
+
+        elif cookie_data:
+            cookies_to_save = json.loads(cookie_data)
+        else:
+            return {
+                "success": False,
+                "error": "缺少必要参数",
+                "message": "请提供 cookie_data 或 file_base64 其中之一"
+            }
+
+        # 落盘保存（内部会进行有效性过滤）
+        ok = await storage.save_cookies(cookies_to_save)
+        if not ok:
+            return {
+                "success": False,
+                "error": "保存失败",
+                "message": "写入 Cookie 文件失败"
+            }
+        
+        #################################################################
+        user_session_manager = get_user_session_manager()
+        
+        # if fresh:
+        #     # 强制创建新会话，先清理现有 cookies 和会话
+        #     logger.info(f"fresh=True，清理用户 {current_user} 的现有 cookies 和会话")
+        #     await user_session_manager.cleanup_user_session(current_user)
+        
+        # 获取或创建用户会话（阻塞等待登录完成）
+        # 如果本地 cookies 有效，会直接返回已登录状态
+        # 如果 headless 未指定，使用 settings 中的配置
+        effective_headless = True
+        result = await user_session_manager.get_or_create_session(
+            username=current_user,
+            headless=effective_headless,
+            wait_for_completion=True  # 阻塞等待登录完成
+        )
+        
+        if "error" in result:
+            return {
+                "success": False,
+                "error": result["error"],
+                "message": f"为用户 {current_user} 创建会话失败"
+            }
+        
+        session_id = result["session_id"]
+        status = result["status"]
+        is_new_session = result.get("is_new", False)
+        cookies_saved = result.get("cookies_saved", False)
+
+        logger.info(f"用户 {current_user} 会话状态: {status}")
+        if is_new_session:
+            logger.info(f"用户 {current_user} 创建了新会话 ID: {session_id}")
+        if cookies_saved:
+            logger.info(f"用户 {current_user} 的 Cookie 已成功保存")
+
+
+        ################################################################
+
+
+
+        return {
+            "success": True,
+            "path": str(storage.cookie_path),
+            "count": len(cookies_to_save),
+            "message": f"Cookie 已保存到: {storage.cookie_path.name}"
+        }
+
+    except Exception as e:
+        logger.error(f"保存 Cookie 文件失败: {e}")
+        return {
+            "success": False,
+            "error": str(e),
+            "message": "保存 Cookie 文件失败"
         }
 

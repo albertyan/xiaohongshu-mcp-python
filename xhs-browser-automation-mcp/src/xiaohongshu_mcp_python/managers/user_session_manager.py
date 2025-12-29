@@ -10,6 +10,7 @@ from loguru import logger
 
 from ..storage.user_session_storage import UserSessionStorage
 from ..auth.login_session_manager import LoginSessionManager
+from ..config.settings import settings
 
 
 class UserSessionManager:
@@ -134,7 +135,7 @@ class UserSessionManager:
                 "error": "创建会话失败"
             }
     
-    async def _check_login_expired(self, username: str) -> bool:
+    async def _check_login_expired(self, username: str, headless: bool = False) -> bool:
         """
         检查登录是否失效（复用 XiaohongshuLogin.is_logged_in 方法）
         
@@ -158,7 +159,7 @@ class UserSessionManager:
                 return True
             
             # 创建临时浏览器实例和登录管理器
-            browser_manager = BrowserManager(cookie_storage=cookie_storage)
+            browser_manager = BrowserManager(cookie_storage=cookie_storage,headless=headless)
             await browser_manager.start()
             
             try:
@@ -202,7 +203,7 @@ class UserSessionManager:
             logger.warning(f"检查登录状态出错，但 cookies 文件存在，保持用户 {username} 的 cookies 不变")
             return False
     
-    async def get_user_session_status(self, username: str) -> Optional[Dict[str, Any]]:
+    async def get_user_session_status(self, username: str, headless: bool = False) -> Optional[Dict[str, Any]]:
         """
         获取用户会话状态（基于本地 cookies 文件）
         
@@ -224,7 +225,7 @@ class UserSessionManager:
         logger.info(f"用户 {username} 的本地 cookies 文件存在，检查登录状态")
         
         # 2. 检查登录是否失效
-        is_expired = await self._check_login_expired(username)
+        is_expired = await self._check_login_expired(username, headless=headless)
         
         if is_expired:
             # 登录失效，清空本地数据

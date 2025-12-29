@@ -23,6 +23,7 @@ const {
 onMounted(async () => {
   await initApiUrl()
 })
+isVisible.value = false
 </script>
 
 <template>

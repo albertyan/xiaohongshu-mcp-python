@@ -7,6 +7,7 @@ export const AUTO_CLEAR_DELAY = 3000
 export const MESSAGE_ACTIONS = {
   TOGGLE_SIDEBAR: 'toggleSidebar',
   CHAT_REQUEST: 'chatRequest',
+  EXPORT_COOKIES: 'exportCookies',
 } as const
 
 export const SUCCESS_KEYWORDS = ['成功', '已发布', '完成']

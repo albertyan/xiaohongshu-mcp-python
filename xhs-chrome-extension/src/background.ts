@@ -2,6 +2,7 @@
 
 import type { ChatRequest, ChatResponse } from './types'
 import { MESSAGE_ACTIONS } from './constants'
+import { Base64 } from './services/base64'
 
 // 监听扩展安装
 chrome.runtime.onInstalled.addListener(() => {
@@ -44,6 +45,12 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     // 返回 true 表示将异步发送响应
     return true
   }
+  if (message.action === MESSAGE_ACTIONS.EXPORT_COOKIES) {
+    exportCookies()
+      .then((result) => sendResponse({ success: true, data: result }))
+      .catch((error) => sendResponse({ success: false, error: error.message }))
+    return true
+  }
 })
 
 /**
@@ -74,4 +81,25 @@ async function handleChatRequest(requestData: ChatRequest): Promise<ChatResponse
     console.error('Background: 聊天请求失败:', error)
     throw error
   }
+}
+
+async function exportCookies(): Promise<{ count: number; filename: string }> {
+  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+  if (!tab || !tab.url) {
+    throw new Error('无法获取当前标签页 URL')
+  }
+  const url = tab.url
+  const cookies = await chrome.cookies.getAll({ url })
+  const hostname = new URL(url).hostname.replace(/[:\/\\]/g, '_')
+  const filename = `cookies_${hostname}_${Date.now()}.json`
+  const data = JSON.stringify(cookies, null, 2)
+  const base64 = new Base64()
+  const dataUrl = 'data:application/json;charset=utf-8,' + base64.encode(encodeURIComponent(data))
+  await chrome.downloads.download({
+    url: dataUrl,
+    filename,
+    saveAs: true,
+    conflictAction: 'uniquify'
+  })
+  return { count: cookies.length, filename }
 }

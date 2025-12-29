@@ -105,6 +105,9 @@ class CookieStorage:
         try:
             # 过滤掉无效的Cookie
             valid_cookies = self._filter_valid_cookies(cookies)
+            if not valid_cookies:
+                logger.warning("没有有效Cookie可保存")
+                return False
             
             with open(self.cookie_path, 'w', encoding='utf-8') as f:
                 json.dump(valid_cookies, f, indent=2, ensure_ascii=False)
@@ -129,6 +132,10 @@ class CookieStorage:
         valid_cookies = []
         
         for cookie in cookies:
+            # 检查SameSite值是否有效
+            if 'sameSite' in cookie and cookie['sameSite'] not in ['Lax', 'Strict', 'None']:
+                cookie['sameSite'] = 'Lax'
+
             # 检查必需的字段
             if not all(key in cookie for key in ['name', 'value', 'domain']):
                 logger.warning(f"跳过无效Cookie: {cookie}")
@@ -139,6 +146,8 @@ class CookieStorage:
                 logger.warning(f"跳过空Cookie: {cookie}")
                 continue
             
+
+
             valid_cookies.append(cookie)
         
         return valid_cookies
@@ -222,3 +231,4 @@ class CookieStorage:
         except Exception as e:
             logger.error(f"Cookie备份失败: {e}")
             return False
+        
