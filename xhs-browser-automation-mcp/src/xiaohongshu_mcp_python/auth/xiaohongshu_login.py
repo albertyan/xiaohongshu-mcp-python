@@ -223,6 +223,56 @@ class XiaohongshuLogin:
             logger.error(f"保存 cookies 失败: {e}")
             return False
 
+    async def get_login_qrcode(self, headless: bool = False, timeout: int = 90, fresh: bool = True) -> str:
+        """
+        完整登录：打开弹窗→阻塞等待登录完成（登录框消失且"我的"按钮出现）
+        返回 (success, message, cookies_saved)
+        
+        默认 fresh=True，强制清空 cookies，确保需要扫码而不是复用旧会话。
+        默认 timeout=90秒，阻塞等待直到登录框消失且"我的"按钮出现。
+        """
+        try:
+            # 在启动前设置 headless
+            self.browser_manager.headless = headless
+            await self.initialize()
+            # fresh 模式：清空 cookies（文件和上下文）
+            if fresh:
+                try:
+                    self.cookie_storage.clear_cookies()
+                    page = await self.browser_manager.get_page()
+                    await page.context.clear_cookies()
+                    logger.info("已清空 cookies，开始干净的登录流程")
+                except Exception as ce:
+                    logger.warning(f"清空 cookies 失败: {ce}")
+            # 导航后通过 DOM 检查当前是否已登录
+            if await self.is_logged_in(navigate=True):
+                await self.browser_manager.save_cookies()
+                logger.info("用户已登录，无需扫码")
+                return ""
+            # 打开登录弹窗并获取二维码
+            qrcode_response = await self.get_qrcode()   
+
+            if qrcode_response:
+                # 定义后台任务：等待登录 -> 清理资源
+                async def wait_and_cleanup():
+                    try:
+                        await self.wait_for_login(timeout=timeout)
+                    finally:
+                        # 无论成功失败，最后都清理资源（关闭浏览器）
+                        # wait_for_login 内部成功时已保存 cookies
+                        await self.cleanup(save_cookies=True)
+                        logger.info("登录流程结束，资源已清理")
+
+                # 异步启动后台任务，不阻塞当前返回
+                asyncio.create_task(wait_and_cleanup())
+                return qrcode_response
+            
+            return ""
+        except Exception as e:
+            logger.error(f"登录流程失败: {e}")
+            return ""
+        
+
 
 def get_user_login() -> XiaohongshuLogin:
     """获取全局用户会话管理器实例"""

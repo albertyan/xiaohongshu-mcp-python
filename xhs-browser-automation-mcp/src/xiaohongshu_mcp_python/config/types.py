@@ -285,6 +285,14 @@ class FeedsListResponse(BaseModel):
     success: bool = True
     error: Optional[str] = None
 
+class LoginQrcodeResponse(BaseModel):
+    """
+    登录二维码响应
+    对应 Go 代码中的 LoginQrcodeResponse
+    """
+    timeout: str = Field(..., description="等待登录的超时时间")
+    img: str = Field(..., description="二维码图片的 Base64 或 URL")
+    is_logged_in: bool = Field(..., alias="isLoggedIn", description="当前是否已登录")
 
 # 更新前向引用
 Comment.model_rebuild()

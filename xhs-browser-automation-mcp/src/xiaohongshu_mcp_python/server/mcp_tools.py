@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Optional, Union, List,Dict, Any
 from loguru import logger
 from fastmcp import Context, FastMCP
+import mcp.types as types
 
 
 from ..services.service import XiaohongshuService
@@ -19,7 +20,7 @@ from ..storage.cookie_storage import CookieStorage
 from ..managers.user_session_manager import get_user_session_manager
 from ..utils.auth_helpers import check_user_login_status
 from ..actions.search_model import SearchFeedsArgs, FilterOption, SortByType, NoteTypeType, PublishTimeType, SearchScopeType, LocationType
-
+from ..auth.xiaohongshu_login import XiaohongshuLogin, get_user_login
 
 # 创建 FastMCP 实例（需要在导入时创建，以便工具函数可以注册）
 mcp = FastMCP("xiaohongshu-mcp-server")
@@ -921,11 +922,6 @@ async def xiaohongshu_upload_cookies(
         #################################################################
         user_session_manager = get_user_session_manager()
         
-        # if fresh:
-        #     # 强制创建新会话，先清理现有 cookies 和会话
-        #     logger.info(f"fresh=True，清理用户 {current_user} 的现有 cookies 和会话")
-        #     await user_session_manager.cleanup_user_session(current_user)
-        
         # 获取或创建用户会话（阻塞等待登录完成）
         # 如果本地 cookies 有效，会直接返回已登录状态
         # 如果 headless 未指定，使用 settings 中的配置
@@ -953,12 +949,7 @@ async def xiaohongshu_upload_cookies(
             logger.info(f"用户 {current_user} 创建了新会话 ID: {session_id}")
         if cookies_saved:
             logger.info(f"用户 {current_user} 的 Cookie 已成功保存")
-
-
         ################################################################
-
-
-
         return {
             "success": True,
             "path": str(storage.cookie_path),
@@ -974,3 +965,68 @@ async def xiaohongshu_upload_cookies(
             "message": "保存 Cookie 文件失败"
         }
 
+@mcp.tool
+async def xiaohongshu_get_qr_code(
+    username: Optional[str] = None
+) -> Any:
+    """
+    获取小红书登录二维码
+    
+    Args:
+        username: 用户名（可选，不提供则使用全局用户）
+        
+    Returns:
+        包含二维码图片和提示文本的内容列表
+    """
+    try:
+        current_user = username or settings.GLOBAL_USER
+        
+        # 实例化依赖
+        cookie_storage = CookieStorage(f"cookies_{current_user}.json")
+        browser_manager = BrowserManager(
+            headless=True,
+            cookie_storage=cookie_storage
+        )
+        login_manager = XiaohongshuLogin(browser_manager, cookie_storage)
+        
+        # 获取二维码（异步等待登录）
+        qr_code_base64 = await login_manager.get_login_qrcode(headless=True)
+
+        if not qr_code_base64:
+             return {
+                "success": False,
+                "message": f"用户 {current_user} 可能已登录或无法获取二维码"
+            }
+
+        # 处理二维码数据
+        image_data = qr_code_base64
+        mime_type = "image/png"
+        
+        if qr_code_base64.startswith("data:"):
+            try:
+                header, data = qr_code_base64.split(",", 1)
+                image_data = data
+                # header: data:image/png;base64
+                if ";" in header:
+                    mime_type = header.split(";")[0].split(":")[1]
+            except Exception as e:
+                logger.warning(f"解析二维码 data URI 失败: {e}")
+        
+        return [
+            types.TextContent(
+                type="text",
+                text=f"为用户 {current_user} 生成了登录二维码，请使用小红书APP扫码登录。"
+            ),
+            types.ImageContent(
+                type="image",
+                data=image_data,
+                mimeType=mime_type
+            )
+        ]
+    except Exception as e:
+        logger.error(f"获取小红书登录二维码失败: {e}")
+        return {
+            "success": False,
+            "error": str(e),
+            "message": "获取小红书登录二维码失败"
+        }
