@@ -61,7 +61,7 @@ RUN echo "0 2 * * * /app/scripts/cleanup_logs.sh >> /app/logs/cleanup.log 2>&1" 
 EXPOSE 18060
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
-    CMD curl -f http://localhost:8000/health || exit 1
+    CMD curl -f http://localhost:18060/health || exit 1
 
 # 启动命令（使用 entrypoint 脚本）
 CMD ["/app/scripts/entrypoint.sh"]

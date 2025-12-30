@@ -27,7 +27,7 @@ class SearchAction:
         """
         self.page = page
         
-    async def search(self, keyword: str, page_num: int = 1, max_items: int = 50, filters: Optional[FilterOption] = None) -> SearchResult:
+    async def search(self, keyword: str,max_items: int = 50, filters: Optional[FilterOption] = None) -> SearchResult:
         """
         搜索内容（支持滚动加载多页）
         
@@ -148,51 +148,29 @@ class SearchAction:
                     logger.info(f"首屏加载完成，当前共收集 {len(all_feeds)} 条数据")
             except Exception as e:
                 logger.warning(f"获取首屏 State 数据失败 (非致命): {e}")
-
             # 2. 滚动加载更多数据
-            if page_num > 1:
-                logger.info(f"开始执行滚动加载，目标页数: {page_num}")
+            i = 0
+            while len(all_feeds) < max_items:
+                logger.info(f"正在执行第 {i + 1} 次滚动...")
                 
-                for i in range(page_num - 1):
-                    # 如果已达到数量限制，停止滚动
-                    if len(all_feeds) >= max_items:
-                        logger.info(f"已达到最大数量限制 {max_items}，停止滚动")
-                        break
-                        
-                    logger.info(f"正在执行第 {i + 1}/{page_num - 1} 次滚动...")
-                    
-                    # 滚动到底部
-                    await self.page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
-                    
-                    # # 等待加载
-                    # try:
-                    #     # 等待网络空闲或固定时间，给 API 请求留出时间
-                    #     # 随机等待 2-4 秒模拟人类行为
-                    #     import random
-                    #     wait_time = random.uniform(2, 4)
-                    #     await asyncio.sleep(wait_time)
-                        
-                    #     # 检查是否有加载指示器
-                    #     # await self.page.wait_for_selector(".loading", state="hidden", timeout=2000)
-                    # except Exception:
-                    #     pass
-                    # 添加随机延迟，模拟人类行为
-                    await AntiBotStrategy.add_random_delay(seed=keyword)
-            
-                    # 使用统一的反爬虫导航策略
-                    await AntiBotStrategy.simulate_human_navigation(self.page, search_url)
+                # 滚动到底部
+                await self.page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
+                
+                # 添加随机延迟，模拟人类行为
+                await AntiBotStrategy.add_random_delay(seed=keyword)
+        
+                # 使用统一的反爬虫导航策略
+                await AntiBotStrategy.simulate_human_navigation(self.page, search_url)
 
-                    # 等待页面稳定
-                    await self.page.wait_for_load_state("networkidle")
+                # 等待页面稳定
+                await self.page.wait_for_load_state("networkidle")
 
-                    logger.info(f"滚动完成，当前共收集 {len(all_feeds)} 条数据")
-            
+                logger.info(f"滚动完成，当前共收集 {len(all_feeds)} 条数据")
             # 截断到最大数量
             if len(all_feeds) > max_items:
                 all_feeds = all_feeds[:max_items]
-            
+
             logger.info(f"搜索完成，总计获取 {len(all_feeds)} 条数据")
-            
             return SearchResult(
                 items=all_feeds,
                 has_more=True, # 简化处理，假设总是有更多

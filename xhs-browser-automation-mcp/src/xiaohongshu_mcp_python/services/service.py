@@ -284,7 +284,6 @@ class XiaohongshuService:
     async def search_content(
         self,
         keyword: str,
-        page: int = 1,
         max_items: int = 50,
         filters: Optional[FilterOption] = None,
         username: Optional[str] = None
@@ -311,7 +310,7 @@ class XiaohongshuService:
                 )
             
             search_action = SearchAction(browser_page)
-            return await search_action.search(keyword, page, max_items, filters)
+            return await search_action.search(keyword, max_items, filters)
             
         except Exception as e:
             logger.error(f"搜索内容失败: {e}")

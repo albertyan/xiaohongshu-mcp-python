@@ -547,7 +547,6 @@ async def xiaohongshu_publish_video(
 @mcp.tool
 async def xiaohongshu_search_feeds(
     keyword: str,
-    page_num: int = 1,
     max_items: int = 50,
     filters: Optional[FilterOption] = None,
     filterStr: Optional[str] = None,
@@ -558,7 +557,6 @@ async def xiaohongshu_search_feeds(
     
     Args:
         keyword: 搜索关键词
-        page_num: 滚动加载页数（默认为1，即只加载首屏）
         max_items: 最大获取数量限制（默认为50）
         filters: 搜索过滤选项
         username: 用户名（可选，如果不提供则使用全局用户）
@@ -595,7 +593,6 @@ async def xiaohongshu_search_feeds(
             # 执行搜索
             result = await service.search_content(
                 keyword, 
-                page=page_num,
                 max_items=max_items,
                 filters=filters,
                 username=current_user   

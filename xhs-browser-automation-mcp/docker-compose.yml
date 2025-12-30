@@ -22,7 +22,7 @@ services:
       
       # 服务器配置
       - SERVER_HOST=${SERVER_HOST:-0.0.0.0}
-      - SERVER_PORT=${SERVER_PORT:-8000}
+      - SERVER_PORT=${SERVER_PORT:-18060}
       
       # 用户配置
       - GLOBAL_USER=${GLOBAL_USER:-luyike}
