@@ -82,7 +82,8 @@ class AntiBotStrategy:
     async def simulate_natural_scrolling(page: Page, scroll_count: int = 3) -> None:
         """
         模拟自然的分步滚动行为
-        
+        为什么这么做：人类用户在阅读页面时通常会分段滚动、停顿，
+        这种行为能降低网站基于滚动模式的自动化检测概率
         Args:
             page: Playwright页面对象
             scroll_count: 滚动步数
@@ -109,6 +110,43 @@ class AntiBotStrategy:
             
         except Exception as e:
             logger.warning(f"模拟自然滚动失败: {e}")
+    
+    @staticmethod
+    async def simulate_mouse_movements(page: Page, moves: int = 10) -> None:
+        """
+        模拟随机鼠标移动
+        为什么这么做：许多网站会观察鼠标轨迹来判断是否为真实用户，
+        通过模拟轻微、随机的移动可以降低机器特征
+        
+        Args:
+            page: Playwright页面对象
+            moves: 移动次数
+        """
+        try:
+            for _ in range(moves):
+                x = random.randint(0, 300) + random.random() * 10
+                y = random.randint(0, 300) + random.random() * 10
+                await page.mouse.move(x, y, steps=random.randint(3, 10))
+                await asyncio.sleep(0.05 + random.random() * 0.2)
+        except Exception as e:
+            logger.debug(f"模拟鼠标移动失败: {e}")
+    
+    @staticmethod
+    async def simulate_random_typing(page: Page, text: str = "hello", delay_range: tuple[float, float] = (50, 150)) -> None:
+        """
+        模拟随机键入
+        为什么这么做：随机的按键间隔更接近人类行为，避免过于规律的输入被识别
+        
+        Args:
+            page: Playwright页面对象
+            text: 要输入的文本
+            delay_range: 每次按键的延迟范围（毫秒）
+        """
+        try:
+            for ch in text:
+                await page.keyboard.type(ch, delay=random.randint(int(delay_range[0]), int(delay_range[1])))
+        except Exception as e:
+            logger.debug(f"模拟随机键入失败: {e}")
     
     @staticmethod
     async def wait_for_page_stable(page: Page, timeout: int = 10000) -> None:

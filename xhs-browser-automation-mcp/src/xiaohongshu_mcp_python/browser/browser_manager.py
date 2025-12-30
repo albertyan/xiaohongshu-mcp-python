@@ -150,13 +150,21 @@ class BrowserManager:
         
         self._browser = await browser_launcher.launch(**launch_options)
         
-        # 创建浏览器上下文 - 使用默认配置
+        # 创建浏览器上下文 - 使用更接近真实用户的仿真参数
+        # 为什么这么做：很多网站会根据语言、时区、设备参数、触控能力等进行指纹识别
+        # 通过设置这些参数为常见的中国大陆桌面用户配置，可以降低被识别为自动化的概率
         context_options = {
             "viewport": {"width": BrowserConfig.VIEWPORT_WIDTH, "height": BrowserConfig.VIEWPORT_HEIGHT},
             "user_agent": BrowserConfig.USER_AGENT,
             "java_script_enabled": True,
             "accept_downloads": True,
             "ignore_https_errors": True,
+            "locale": "zh-CN",
+            "timezone_id": "Asia/Shanghai",
+            "color_scheme": "light",
+            "is_mobile": False,
+            "has_touch": False,
+            "device_scale_factor": 1,
         }
         
         self._context = await self._browser.new_context(**context_options)
@@ -369,6 +377,34 @@ class BrowserManager:
                     };
                 }
                 
+                // 覆盖 navigator.platform 与 vendor
+                Object.defineProperty(navigator, 'platform', {
+                    get: () => 'Win32',
+                });
+                Object.defineProperty(navigator, 'vendor', {
+                    get: () => 'Google Inc.',
+                });
+                Object.defineProperty(navigator, 'hardwareConcurrency', {
+                    get: () => 8,
+                });
+
+                // 覆盖 navigator.permissions 防止对通知权限的探测异常
+                const originalQuery = window.navigator.permissions && window.navigator.permissions.query;
+                if (originalQuery) {
+                    window.navigator.permissions.query = (parameters) => (
+                        parameters && parameters.name === 'notifications'
+                            ? Promise.resolve({ state: 'granted' })
+                            : originalQuery(parameters)
+                    );
+                }
+
+                // 伪造 network 信息
+                if (!('connection' in navigator)) {
+                    Object.defineProperty(navigator, 'connection', {
+                        get: () => ({ downlink: 10, effectiveType: '4g', rtt: 50, saveData: false }),
+                    });
+                }
+
                 // 绕过 WebGL 检测
                 const getParameter = WebGLRenderingContext.prototype.getParameter;
                 WebGLRenderingContext.prototype.getParameter = function(parameter) {
