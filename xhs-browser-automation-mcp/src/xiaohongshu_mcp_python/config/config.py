@@ -110,10 +110,16 @@ class BrowserConfig:
     VIEWPORT_WIDTH = 1920
     VIEWPORT_HEIGHT = 1080
     
-    # 浏览器启动参数 - 仅保留基本功能参数
+    # 浏览器启动参数 - 增加 Linux 兼容性和防检测参数
     BROWSER_ARGS = [
         "--no-first-run",
         "--mute-audio",
+        "--no-sandbox",  # Linux root 运行必需
+        "--disable-setuid-sandbox",  # Linux 兼容性
+        "--disable-infobars",  # 隐藏自动化提示
+        "--disable-blink-features=AutomationControlled",  # 防检测关键参数
+        "--disable-extensions",
+        "--window-size=1920,1080",
     ]
     
     # 用户代理 - 使用最新版本

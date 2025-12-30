@@ -127,6 +127,12 @@ class BrowserManager:
             "args": BrowserConfig.BROWSER_ARGS
         }
         
+        # Linux 环境下可能需要显式禁用 GPU（视具体容器基础镜像而定，通常为了稳定性建议禁用）
+        import sys
+        if sys.platform == "linux":
+             launch_options["args"].append("--disable-gpu")
+             launch_options["args"].append("--disable-dev-shm-usage") # 解决 Docker 内存共享问题
+        
         # 如果指定了浏览器可执行文件路径，使用本地浏览器
         if self.executable_path:
             launch_options["executable_path"] = self.executable_path
