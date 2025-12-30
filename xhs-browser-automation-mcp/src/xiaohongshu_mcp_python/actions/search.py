@@ -77,10 +77,6 @@ class SearchAction:
             
             # 等待页面稳定
             await self.page.wait_for_load_state("networkidle")
-            # 在首屏加载后注入人类行为模拟（鼠标移动与随机键入）
-            # 为什么这么做：降低首次进入页面就表现出“静止无交互”的特征，减少被风控标记的概率
-            await AntiBotStrategy.simulate_mouse_movements(self.page, moves=8)
-            await AntiBotStrategy.simulate_random_typing(self.page, text=keyword[:6] if keyword else "hi", delay_range=(60, 140))
             ## 处理筛选选项
             if filters:
                 try:
@@ -162,11 +158,6 @@ class SearchAction:
                 
                 # 添加随机延迟，模拟人类行为
                 await AntiBotStrategy.add_random_delay(seed=keyword)
-                
-                # 使用更细粒度的人类行为模拟而不是重新导航
-                # 为什么不重新导航：重复的 goto 会导致页面重置，触发更多风控；滚动+微交互更接近真实用户
-                await AntiBotStrategy.simulate_natural_scrolling(self.page, scroll_count=2)
-                await AntiBotStrategy.simulate_mouse_movements(self.page, moves=5)
 
                 # 等待页面稳定
                 await self.page.wait_for_load_state("networkidle")

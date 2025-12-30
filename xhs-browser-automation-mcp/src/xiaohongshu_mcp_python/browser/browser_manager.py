@@ -348,78 +348,7 @@ class BrowserManager:
         """
         try:
             stealth = Stealth()
-            await stealth.apply_stealth_async(page)
-            
-            # 注入额外的反检测脚本
-            await page.add_init_script("""
-                // 覆盖 navigator.webdriver 属性
-                Object.defineProperty(navigator, 'webdriver', {
-                    get: () => undefined,
-                });
-
-                // 伪造 navigator.languages
-                Object.defineProperty(navigator, 'languages', {
-                    get: () => ['zh-CN', 'zh', 'en', 'en-US'],
-                });
-                
-                // 伪造 navigator.plugins
-                Object.defineProperty(navigator, 'plugins', {
-                    get: () => [1, 2, 3, 4, 5],
-                });
-
-                // 伪造 chrome 对象
-                if (!window.chrome) {
-                    window.chrome = {
-                        runtime: {},
-                        loadTimes: function() {},
-                        csi: function() {},
-                        app: {}
-                    };
-                }
-                
-                // 覆盖 navigator.platform 与 vendor
-                Object.defineProperty(navigator, 'platform', {
-                    get: () => 'Win32',
-                });
-                Object.defineProperty(navigator, 'vendor', {
-                    get: () => 'Google Inc.',
-                });
-                Object.defineProperty(navigator, 'hardwareConcurrency', {
-                    get: () => 8,
-                });
-
-                // 覆盖 navigator.permissions 防止对通知权限的探测异常
-                const originalQuery = window.navigator.permissions && window.navigator.permissions.query;
-                if (originalQuery) {
-                    window.navigator.permissions.query = (parameters) => (
-                        parameters && parameters.name === 'notifications'
-                            ? Promise.resolve({ state: 'granted' })
-                            : originalQuery(parameters)
-                    );
-                }
-
-                // 伪造 network 信息
-                if (!('connection' in navigator)) {
-                    Object.defineProperty(navigator, 'connection', {
-                        get: () => ({ downlink: 10, effectiveType: '4g', rtt: 50, saveData: false }),
-                    });
-                }
-
-                // 绕过 WebGL 检测
-                const getParameter = WebGLRenderingContext.prototype.getParameter;
-                WebGLRenderingContext.prototype.getParameter = function(parameter) {
-                    // UNMASKED_VENDOR_WEBGL
-                    if (parameter === 37445) {
-                        return 'Intel Inc.';
-                    }
-                    // UNMASKED_RENDERER_WEBGL
-                    if (parameter === 37446) {
-                        return 'Intel(R) Iris(R) Xe Graphics';
-                    }
-                    return getParameter(parameter);
-                };
-            """)
-            
+            await stealth.apply_stealth_async(page)            
             logger.debug("已应用 playwright-stealth 和自定义反检测脚本")
         except Exception as e:
             logger.warning(f"应用反检测脚本失败: {e}，继续执行")
