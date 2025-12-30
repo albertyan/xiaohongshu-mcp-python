@@ -58,7 +58,7 @@ RUN mkdir -p data downloads logs && \
 # 配置日志清理 cron 任务（每天凌晨2点执行）
 RUN echo "0 2 * * * /app/scripts/cleanup_logs.sh >> /app/logs/cleanup.log 2>&1" | crontab - || true
 
-EXPOSE 8000
+EXPOSE 18060
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
