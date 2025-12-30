@@ -428,7 +428,10 @@ class SearchAction:
 
         for filter_option in internal_filters:
            try:
-               validate_internal_filter_option(filter_option)
+               if filter_option.tags_index != 1 :
+                validate_internal_filter_option(filter_option)
+               else:
+                internal_filters.remove(filter_option)
            except ValueError as e:
                logger.error(f"无效的筛选选项: {e}")
                continue
