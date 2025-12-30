@@ -43,7 +43,7 @@ class UserSessionManager:
         logger.info(f"为用户 {username} 获取或创建会话（基于本地 cookies）")
         
         # 1. 检查本地 cookies 是否存在且有效
-        session_status = await self.get_user_session_status(username)
+        session_status = await self.get_user_session_status(username,headless=headless)
         
         if session_status and session_status.get("status") == "logged_in":
             # 本地 cookies 有效，直接返回已登录状态

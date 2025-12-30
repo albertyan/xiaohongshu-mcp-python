@@ -91,10 +91,10 @@ async function exportCookies(): Promise<{ count: number; filename: string }> {
   const url = tab.url
   const cookies = await chrome.cookies.getAll({ url })
   const hostname = new URL(url).hostname.replace(/[:\/\\]/g, '_')
-  const filename = `cookies_${hostname}_${Date.now()}.json`
+  const filename = `cookies_${hostname}_${Date.now()}.txt`
   const data = JSON.stringify(cookies, null, 2)
   const base64 = new Base64()
-  const dataUrl = 'data:application/json;charset=utf-8,' + base64.encode(encodeURIComponent(data))
+  const dataUrl = 'data:text/plain;charset=utf-8,' + base64.encode(encodeURIComponent(data))
   await chrome.downloads.download({
     url: dataUrl,
     filename,
