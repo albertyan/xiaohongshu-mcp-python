@@ -341,6 +341,49 @@ class BrowserManager:
         try:
             stealth = Stealth()
             await stealth.apply_stealth_async(page)
-            logger.debug("已应用 playwright-stealth 反检测脚本")
+            
+            # 注入额外的反检测脚本
+            await page.add_init_script("""
+                // 覆盖 navigator.webdriver 属性
+                Object.defineProperty(navigator, 'webdriver', {
+                    get: () => undefined,
+                });
+
+                // 伪造 navigator.languages
+                Object.defineProperty(navigator, 'languages', {
+                    get: () => ['zh-CN', 'zh', 'en', 'en-US'],
+                });
+                
+                // 伪造 navigator.plugins
+                Object.defineProperty(navigator, 'plugins', {
+                    get: () => [1, 2, 3, 4, 5],
+                });
+
+                // 伪造 chrome 对象
+                if (!window.chrome) {
+                    window.chrome = {
+                        runtime: {},
+                        loadTimes: function() {},
+                        csi: function() {},
+                        app: {}
+                    };
+                }
+                
+                // 绕过 WebGL 检测
+                const getParameter = WebGLRenderingContext.prototype.getParameter;
+                WebGLRenderingContext.prototype.getParameter = function(parameter) {
+                    // UNMASKED_VENDOR_WEBGL
+                    if (parameter === 37445) {
+                        return 'Intel Inc.';
+                    }
+                    // UNMASKED_RENDERER_WEBGL
+                    if (parameter === 37446) {
+                        return 'Intel(R) Iris(R) Xe Graphics';
+                    }
+                    return getParameter(parameter);
+                };
+            """)
+            
+            logger.debug("已应用 playwright-stealth 和自定义反检测脚本")
         except Exception as e:
             logger.warning(f"应用反检测脚本失败: {e}，继续执行")

@@ -40,6 +40,14 @@ class PageController:
                 raise Exception("页面已关闭，需要重新初始化浏览器")
             
             await self.page.goto(url, wait_until=wait_until, timeout=self.default_timeout)
+            
+            # 检查是否被重定向到验证码页面
+            if "website-login/captcha" in self.page.url:
+                logger.error(f"检测到验证码页面: {self.page.url}")
+                # 尝试等待一段时间，看是否是误判或用户手动解决
+                # 但在自动化场景下，通常意味着失败
+                raise Exception(f"触发了小红书滑块验证码拦截，无法继续: {self.page.url}")
+            
             logger.info("页面加载完成")
         except PlaywrightTimeoutError:
             logger.error(f"导航超时: {url}")
