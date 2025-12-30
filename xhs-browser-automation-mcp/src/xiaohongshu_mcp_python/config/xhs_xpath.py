@@ -14,6 +14,8 @@ class XHSXPath:
     # ============ 二维码相关 ============
     QR_CSS = ".login-container .qrcode-img"
     QR_XPATH = "//img[contains(@class, 'qrcode-img')]"
+
+    IS_LOGGED_IN_CSS = ".main-container .user .link-wrapper .channel"
     
     # ============ 登录按钮 ============
     LOGIN_BUTTON_CSS = "button:has-text(\"登录\")"

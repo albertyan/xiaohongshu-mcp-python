@@ -80,6 +80,7 @@ class PageController:
         logger.debug(f"等待元素: {selector} (state={state})")
         
         try:
+            logger.info(f"页面元素: {self.page.content()}")
             locator = self.page.locator(selector)
             await locator.wait_for(state=state, timeout=timeout)
             return locator
