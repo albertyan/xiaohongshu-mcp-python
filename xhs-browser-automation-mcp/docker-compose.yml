@@ -32,6 +32,9 @@ services:
       # 超时配置
       - PAGE_LOAD_TIMEOUT=${PAGE_LOAD_TIMEOUT:-60000}
       - ELEMENT_TIMEOUT=${ELEMENT_TIMEOUT:-30000}
+      
+      # 调试配置
+      - PLAYWRIGHT_DEBUG=${PLAYWRIGHT_DEBUG}
     volumes:
       # 持久化数据目录
       - ./data:/app/data

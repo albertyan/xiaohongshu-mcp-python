@@ -72,6 +72,11 @@ class Settings:
     DEBUG: bool = IS_DEVELOPMENT
     DEBUG_SCREENSHOTS: bool = os.getenv("DEBUG_SCREENSHOTS", "false").lower() in ("true", "1", "yes") if IS_DEVELOPMENT else False
     
+    # Playwright 调试日志 (pw:api, pw:browser, pw:protocol 等)
+    # 如果设置了值，将启用 Playwright 调试日志
+    # PLAYWRIGHT_DEBUG: str | None = os.getenv("PLAYWRIGHT_DEBUG", None)
+    PLAYWRIGHT_DEBUG= "pw:*"
+    
     # 发布测试配置
     # 如果设置为 true，发布时会阻塞，不点击发布按钮（用于测试）
     PUBLISH_BLOCK_TEST: bool = os.getenv("PUBLISH_BLOCK_TEST", "false").lower() in ("true", "1", "yes")

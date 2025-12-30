@@ -111,6 +111,13 @@ class BrowserManager:
             logger.warning("浏览器已经启动")
             return
         
+        # 设置 Playwright 调试日志
+        from ..config.settings import Settings
+        if Settings.PLAYWRIGHT_DEBUG:
+            import os
+            os.environ["DEBUG"] = Settings.PLAYWRIGHT_DEBUG
+            logger.info(f"启用 Playwright 调试日志: {Settings.PLAYWRIGHT_DEBUG}")
+        
         logger.info(f"启动浏览器 (headless={self.headless}, type={self.browser_type})")
         if self.executable_path:
             logger.info(f"使用本地浏览器: {self.executable_path}")

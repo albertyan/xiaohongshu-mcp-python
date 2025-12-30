@@ -244,11 +244,13 @@ class XiaohongshuLogin:
                     logger.info("已清空 cookies，开始干净的登录流程")
                 except Exception as ce:
                     logger.warning(f"清空 cookies 失败: {ce}")
+                    
             # 导航后通过 DOM 检查当前是否已登录
             if await self.is_logged_in(navigate=True):
                 await self.browser_manager.save_cookies()
                 logger.info("用户已登录，无需扫码")
                 return ""
+            
             # 打开登录弹窗并获取二维码
             qrcode_response = await self.get_qrcode()   
 
@@ -266,7 +268,6 @@ class XiaohongshuLogin:
                 # 异步启动后台任务，不阻塞当前返回
                 asyncio.create_task(wait_and_cleanup())
                 return qrcode_response
-            
             return ""
         except Exception as e:
             logger.error(f"登录流程失败: {e}")
