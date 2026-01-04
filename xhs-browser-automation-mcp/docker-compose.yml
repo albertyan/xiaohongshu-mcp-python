@@ -55,5 +55,5 @@ services:
 
 networks:
   xiaohongshu-network:
-    driver: bridge
+    driver: host
 

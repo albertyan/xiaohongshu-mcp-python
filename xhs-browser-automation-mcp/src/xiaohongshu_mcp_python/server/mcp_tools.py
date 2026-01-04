@@ -361,7 +361,7 @@ async def xiaohongshu_publish_content(
             )
         
         # 检查用户登录状态（基于本地 cookies）
-        login_check = await check_user_login_status(current_user)
+        login_check = await check_user_login_status(current_user, headless=settings.BROWSER_HEADLESS)
         if not login_check.get("valid", False):
             return login_check
         
@@ -471,7 +471,7 @@ async def xiaohongshu_publish_video(
             )
         
         # 检查用户登录状态（基于本地 cookies）
-        login_check = await check_user_login_status(current_user)
+        login_check = await check_user_login_status(current_user, headless=settings.BROWSER_HEADLESS)
         if not login_check.get("valid", False):
             return login_check
         
@@ -571,7 +571,7 @@ async def xiaohongshu_search_feeds(
 
         current_user = username or settings.GLOBAL_USER
         # 检查用户登录状态（基于本地 cookies）
-        login_check = await check_user_login_status(current_user)
+        login_check = await check_user_login_status(current_user, headless=settings.BROWSER_HEADLESS)
         if not login_check.get("valid", False):
             return login_check
         
@@ -633,7 +633,7 @@ async def xiaohongshu_get_feeds(
         current_user = username or settings.GLOBAL_USER
         
         # 检查用户登录状态（基于本地 cookies）
-        login_check = await check_user_login_status(current_user)
+        login_check = await check_user_login_status(current_user, headless=settings.BROWSER_HEADLESS)
         if not login_check.get("valid", False):
             return login_check
         
@@ -738,7 +738,7 @@ async def xiaohongshu_get_user_profile(
         current_user = username or settings.GLOBAL_USER
         
         # 检查用户登录状态（基于本地 cookies）
-        login_check = await check_user_login_status(current_user)
+        login_check = await check_user_login_status(current_user, headless=settings.BROWSER_HEADLESS)
         if not login_check.get("valid", False):
             return login_check
         
@@ -807,7 +807,7 @@ async def xiaohongshu_get_feed_detail(
         current_user = username or settings.GLOBAL_USER
         
         # 检查用户登录状态（基于本地 cookies）
-        login_check = await check_user_login_status(current_user)
+        login_check = await check_user_login_status(current_user, headless=settings.BROWSER_HEADLESS)
         if not login_check.get("valid", False):
             return login_check
         

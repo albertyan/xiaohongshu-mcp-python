@@ -9,7 +9,7 @@ from loguru import logger
 from ..managers.user_session_manager import get_user_session_manager
 
 
-async def check_user_login_status(username: str) -> Dict[str, Any]:
+async def check_user_login_status(username: str, headless: bool = True) -> Dict[str, Any]:
     """
     检查用户登录状态（统一处理函数，基于本地 cookies）
     
@@ -20,7 +20,7 @@ async def check_user_login_status(username: str) -> Dict[str, Any]:
         如果登录有效返回 {"valid": True, "status": ...}，否则返回错误信息字典
     """
     user_session_manager = get_user_session_manager()
-    user_session_status = await user_session_manager.get_user_session_status(username)
+    user_session_status = await user_session_manager.get_user_session_status(username, headless=headless)
     
     if not user_session_status:
         return {

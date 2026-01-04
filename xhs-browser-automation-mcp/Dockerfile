@@ -41,7 +41,7 @@ RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && 
 
 RUN pip install --no-cache-dir uv
 
-COPY pyproject.toml uv.lock README.md ./
+COPY pyproject.toml uv.lock README.md .env ./
 
 RUN uv sync --frozen
 
