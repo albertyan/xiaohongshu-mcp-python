@@ -1027,3 +1027,46 @@ async def xiaohongshu_get_qr_code(
             "error": str(e),
             "message": "获取小红书登录二维码失败"
         }
+    
+# https://bot.sannysoft.com/ body  body > table:nth-child(4)   #fp2
+# https://gongjux.com/fingerprint/   #content > div > div.pad10 > div > table
+# https://fingerprint-scan.com/  #fingerprint-info-container  #fingerprintTable   #fingerprint-info-container > div > div  
+@mcp.tool
+async def areyouheadless(
+    headless: bool = True
+) -> Any:
+    """
+    检查当前浏览器是否为 headless 模式
+    
+    Args:
+        headless: 是否为 headless 模式（默认 True）
+        
+    Returns:
+        包含 headless 状态的字典
+    """
+    try:
+
+        from ..browser.page_controller import PageController
+        browser_manager = BrowserManager(
+            headless=headless
+        )
+        await browser_manager.start()
+        page = await browser_manager.get_page()
+        page_controller = PageController(page)
+        await page_controller.navigate("https://fingerprint-scan.com/", wait_until="domcontentloaded")
+        answer_element = await page_controller.wait_for_element("//*[@id='fingerprintTable']") 
+        answer = await answer_element.text_content()
+        await browser_manager.stop()
+        
+        return {
+            "success": True,
+            "headless": headless,
+            "message": f"当前浏览器: {answer}"
+        }
+    except Exception as e:
+        logger.error(f"检查 headless 状态失败: {e}")
+        return {
+            "success": False,
+            "error": str(e),
+            "message": "检查 headless 状态失败"
+        }

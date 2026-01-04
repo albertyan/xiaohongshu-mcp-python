@@ -131,7 +131,8 @@ class BrowserManager:
         from ..config import BrowserConfig
         launch_options = {
             "headless": self.headless,
-            "args": BrowserConfig.BROWSER_ARGS
+            "args": BrowserConfig.BROWSER_ARGS,
+            "ignore_default_args": ["--enable-automation"]
         }
         
         # Linux 环境下可能需要显式禁用 GPU（视具体容器基础镜像而定，通常为了稳定性建议禁用）
