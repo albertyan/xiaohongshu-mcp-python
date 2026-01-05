@@ -14,6 +14,8 @@ RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list.d/debia
     sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list 2>/dev/null || true
 
 RUN apt-get update && apt-get install -y \
+    x11vnc \
+    xvfb \
     curl \
     git \
     build-essential \
@@ -34,7 +36,12 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpango-1.0-0 \
     libcairo2 \
+    locales \
     && rm -rf /var/lib/apt/lists/*
+
+# 设置语言环境
+RUN locale-gen zh_CN.UTF-8
+ENV LANG=zh_CN.UTF-8
 
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip config set global.trusted-host pypi.tuna.tsinghua.edu.cn
@@ -63,6 +70,7 @@ EXPOSE 18060
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:18060/health || exit 1
 
+ENV DISPLAY=:99
 # 启动命令（使用 entrypoint 脚本）
-CMD ["/app/scripts/entrypoint.sh"]
+CMD ["/bin/bash", "-c", "Xvfb :99 -screen 0 1280x1024x24 & x11vnc -display :99 -forever -nopw & /app/scripts/entrypoint.sh"]
 
